@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react"
+import { Phone, Mail, MapPin, ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react"
 
 const footerLinks = {
   services: [
@@ -79,22 +79,44 @@ export function Footer() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5">
                   <Mail className="h-3.5 w-3.5" />
                 </div>
-                <a href="mailto:info@careerfocusinc.org" className="hover:text-white transition-colors duration-200 cursor-pointer">info@careerfocusinc.org</a>
+                <div className="flex flex-col">
+                  <a href="mailto:info@careerfocusinc.com" className="hover:text-white transition-colors duration-200 cursor-pointer">info@careerfocusinc.com</a>
+                  <a href="mailto:info@careerfocusinc.org" className="hover:text-white transition-colors duration-200 cursor-pointer text-xs text-neutral-500">info@careerfocusinc.org</a>
+                </div>
               </li>
               <li className="flex items-start gap-3 text-neutral-400 text-sm">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 shrink-0">
                   <MapPin className="h-3.5 w-3.5" />
                 </div>
-                <span>Wesley Chapel &middot; Tampa &middot; Orlando</span>
+                <span>Tampa &middot; Wesley Chapel &middot; Dade City</span>
               </li>
             </ul>
+            {/* Social Links */}
+            <div className="flex items-center gap-3 mt-6">
+              {[
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/careerfocusinc" },
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/careerfocusinc/" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/careerfocusinc" },
+              ].map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-neutral-500 text-xs">
-            &copy; {new Date().getFullYear()} Career Focus Inc. 501(c)(3). All rights reserved.
+            &copy; {new Date().getFullYear()} Career Focus Inc. 501(c)(3) EIN: 80-0893641. All rights reserved.
           </p>
           <p className="text-neutral-600 text-xs">
             Discover, Develop, Succeed.

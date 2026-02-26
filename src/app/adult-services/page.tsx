@@ -6,6 +6,7 @@ import {
   ClipboardCheck,
   HeartHandshake,
   CheckCircle,
+  Search,
 } from "lucide-react"
 import { Hero } from "@/components/hero"
 import { CtaSection } from "@/components/cta-section"
@@ -69,7 +70,7 @@ const services: ServiceSection[] = [
   },
   {
     icon: HeartHandshake,
-    title: "Benefits Counseling",
+    title: "Work Incentive Counseling",
     description:
       "Expert guidance on how employment affects Social Security, Medicaid, and other benefits.",
     benefits: [
@@ -77,6 +78,18 @@ const services: ServiceSection[] = [
       "Work incentive planning",
       "Benefits management",
       "Transition support",
+    ],
+  },
+  {
+    icon: Search,
+    title: "Direct Placement",
+    description:
+      "Matches individuals with suitable job opportunities based on qualifications and preferences.",
+    benefits: [
+      "Job matching services",
+      "Qualification assessment",
+      "Employer connections",
+      "Placement support",
     ],
   },
 ]

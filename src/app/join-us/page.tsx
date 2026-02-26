@@ -13,25 +13,26 @@ import { CtaSection } from "@/components/cta-section"
 
 const locations = [
   {
-    name: "Wesley Chapel (HQ)",
-    address: "2604 Cypress Ridge Blvd, Ste 102-C",
-    city: "Wesley Chapel, FL 33544",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=2604+Cypress+Ridge+Blvd+Ste+102-C+Wesley+Chapel+FL+33544",
-  },
-  {
-    name: "Tampa",
-    address: "550 N. Reo St, Ste 300",
+    name: "Tampa (HQ)",
+    address: "550 N. Reo St, Suite 300",
     city: "Tampa, FL 33609",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=550+N+Reo+St+Ste+300+Tampa+FL+33609",
+      "https://www.google.com/maps/search/?api=1&query=550+N+Reo+St+Suite+300+Tampa+FL+33609",
   },
   {
-    name: "Orlando",
-    address: "4530 S. Orange Blossom Trail",
-    city: "Orlando, FL 32839",
+    name: "Wesley Chapel",
+    address: "6013 Wesley Grove Blvd, Suite 202",
+    city: "Wesley Chapel, FL 33544",
+    phone: "(813) 995-8473",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=4530+S+Orange+Blossom+Trail+Orlando+FL+32839",
+      "https://www.google.com/maps/search/?api=1&query=6013+Wesley+Grove+Blvd+Suite+202+Wesley+Chapel+FL+33544",
+  },
+  {
+    name: "Dade City",
+    address: "Address TBD",
+    city: "Dade City, FL",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Dade+City+FL",
   },
 ]
 
@@ -81,9 +82,15 @@ export default function JoinUsPage() {
                 <p className="text-neutral-500 text-base leading-relaxed mb-1">
                   {location.address}
                 </p>
-                <p className="text-neutral-500 text-base leading-relaxed mb-5">
+                <p className="text-neutral-500 text-base leading-relaxed mb-1">
                   {location.city}
                 </p>
+                {location.phone && (
+                  <p className="text-neutral-500 text-base leading-relaxed mb-5">
+                    {location.phone}
+                  </p>
+                )}
+                {!location.phone && <div className="mb-5" />}
                 <a
                   href={location.mapsUrl}
                   target="_blank"
@@ -124,13 +131,15 @@ export default function JoinUsPage() {
             {/* Social Links */}
             <div className="flex items-center justify-center gap-3 mb-10">
               {[
-                { icon: Facebook, label: "Facebook" },
-                { icon: Instagram, label: "Instagram" },
-                { icon: Linkedin, label: "LinkedIn" },
-              ].map(({ icon: Icon, label }) => (
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/careerfocusinc" },
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/careerfocusinc/" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/careerfocusinc" },
+              ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-11 w-11 items-center justify-center rounded-xl bg-white border border-neutral-200 text-neutral-400 hover:text-brand-blue-500 hover:border-brand-blue-200 hover:shadow-sm transition-all duration-200 cursor-pointer"
                 >

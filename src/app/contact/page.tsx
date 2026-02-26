@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "Do you serve my area?",
     answer:
-      "We have offices in Wesley Chapel, Tampa, and Orlando, serving communities across Central Florida.",
+      "We have offices in Tampa, Wesley Chapel, and Dade City, serving communities across Central Florida.",
   },
   {
     question: "Is there a cost for services?",
@@ -128,24 +128,41 @@ export default function ContactPage() {
                     <ul className="space-y-2 text-neutral-500 text-sm">
                       <li>
                         <span className="font-medium text-neutral-700">
-                          Wesley Chapel (HQ)
+                          Tampa (HQ)
                         </span>
                         <br />
-                        2604 Cypress Ridge Blvd, Ste 102-C
+                        550 N. Reo St, Suite 300
+                        <br />
+                        Tampa, FL 33609
                       </li>
                       <li>
                         <span className="font-medium text-neutral-700">
-                          Tampa
+                          Wesley Chapel
                         </span>
                         <br />
-                        550 N. Reo St, Ste 300
+                        6013 Wesley Grove Blvd, Suite 202
+                        <br />
+                        Wesley Chapel, FL 33544
+                        <br />
+                        (813) 995-8473
                       </li>
                       <li>
                         <span className="font-medium text-neutral-700">
-                          Orlando
+                          Dade City
                         </span>
                         <br />
-                        4530 S. Orange Blossom Trail
+                        Dade City, FL
+                        <br />
+                        <span className="text-neutral-400 text-xs">Address TBD</span>
+                      </li>
+                      <li>
+                        <span className="font-medium text-neutral-700">
+                          Mailing Address
+                        </span>
+                        <br />
+                        P.O. Box 151333
+                        <br />
+                        Tampa, FL 33684
                       </li>
                     </ul>
                   </div>

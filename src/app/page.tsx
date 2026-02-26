@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const impactNumbers = [
   { icon: Star, value: "13+", label: "Years of Impact", description: "Serving Central Florida communities" },
   { icon: Heart, value: "11", label: "Programs", description: "Tailored career development services" },
-  { icon: TrendingUp, value: "3", label: "Locations", description: "Wesley Chapel, Tampa & Orlando" },
+  { icon: TrendingUp, value: "3", label: "Locations", description: "Wesley Chapel, Tampa & Dade City" },
 ]
 
 export default function Home() {
@@ -55,8 +55,7 @@ export default function Home() {
                 Our Mission
               </h2>
               <p className="text-neutral-500 text-base leading-relaxed">
-                Empowering individuals by providing tools and resources to help
-                achieve meaningful employment and self-sufficiency.
+                To empower individuals by providing them with the necessary tools and resources to explore, pursue, and maintain meaningful employment within their community.
               </p>
             </div>
 
@@ -69,8 +68,7 @@ export default function Home() {
                 Our Vision
               </h2>
               <p className="text-neutral-500 text-base leading-relaxed">
-                A world where individuals of all abilities have equal access to
-                employment opportunities and career development.
+                Career Focus Inc. envisions a world where individuals, regardless of their background, have equal access to meaningful employment opportunities.
               </p>
             </div>
           </div>
@@ -146,14 +144,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial */}
+      {/* Testimonials */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-4 md:px-8">
           <p className="overline text-brand-green-500 mb-8">What People Say</p>
-          <Testimonial
-            quote="Participating in the Career Camp was a game-changer for me. I gained real skills and confidence that changed the trajectory of my career."
-            name="Career Camp Participant"
-          />
+          <div className="space-y-6">
+            <Testimonial
+              quote="Participating in the Career Camp was a game-changer for me. I gained real skills and confidence that changed the trajectory of my career."
+              name="Career Camp Participant"
+            />
+            <Testimonial
+              quote="Quentin and Jalen completed the summer career camp and successfully finished their on-the-job training at Walgreens."
+              name="Career Camp Success Story"
+            />
+            <Testimonial
+              quote="Bella successfully completed her on-the-job training at Selah East Stables as an equestrian trainer, gaining knowledge in horse handling, grooming, and training techniques."
+              name="On-the-Job Training Graduate"
+            />
+          </div>
         </div>
       </section>
 

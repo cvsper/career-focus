@@ -47,17 +47,12 @@ const values = [
 const team = [
   {
     name: "Cassandra Garvey",
-    title: "CEO / Founder",
-    bio: "Over 15 years of experience working with the disabled community. Degree in nursing. Dedicated to providing comprehensive employment services.",
-  },
-  {
-    name: "Taveesha Guyton",
-    title: "Vice President",
-    bio: "Registered Behavior Technician. B.A. in Psychology and Social Work from USF. Extensive experience in the Autism Community.",
+    title: "President, CEO & Founder",
+    bio: "Over 15 years of experience working with the disabled community in various roles including direct care and intensive case management. Degree in nursing.",
   },
   {
     name: "Camille Felicia",
-    title: "Treasurer",
+    title: "Secretary",
     bio: "USF alumna with 10+ years administrative experience. Six years with Kepro (Medicare contractor). Brings organizational expertise to Career Focus.",
   },
 ]
@@ -95,14 +90,14 @@ export default function AboutPage() {
                 <p>
                   Career Focus Inc. was founded in 2013 as a 501(c)(3) nonprofit
                   organization with a clear purpose: to empower individuals by
-                  providing the tools and resources needed to achieve meaningful
-                  employment and self-sufficiency.
+                  providing them with the necessary tools and resources to explore, pursue, and maintain meaningful
+                  employment within their community.
                 </p>
                 <p>
                   What began as a small initiative in the Tampa Bay area has
                   grown into a multi-location organization serving communities
-                  across Central Florida. With offices in Wesley Chapel, Tampa,
-                  and Orlando, we now offer 11 programs supporting youth in
+                  across Central Florida. With offices in Tampa, Wesley Chapel,
+                  and Dade City, we now offer 11 programs supporting youth in
                   transition, adults with disabilities, veterans, and individuals
                   re-entering the workforce.
                 </p>

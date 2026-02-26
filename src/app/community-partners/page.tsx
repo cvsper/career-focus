@@ -116,6 +116,40 @@ export default function CommunityPartnersPage() {
         </div>
       </section>
 
+      {/* Known Partners */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="text-center mb-14">
+            <p className="overline text-brand-green-500 mb-3">Our Partners</p>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
+              Trusted Community Partners
+            </h2>
+            <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
+              We work with outstanding organizations across Central Florida.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+            {[
+              "Walgreens",
+              "Selah East Stables",
+              "AMRoC Fab Lab",
+              "STEM Xposure",
+              "WellFed Community",
+              "Hillsborough County Public Schools CTE",
+            ].map((partner) => (
+              <div
+                key={partner}
+                className="card-premium p-6 text-center"
+              >
+                <p className="font-heading text-base font-semibold text-neutral-800">
+                  {partner}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Three Paths */}
       <section className="py-20 md:py-28 section-cool">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
