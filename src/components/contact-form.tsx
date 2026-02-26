@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,11 +12,78 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Send } from "lucide-react"
+import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+
+type FormStatus = "idle" | "submitting" | "success" | "error"
 
 export function ContactForm() {
+  const [status, setStatus] = useState<FormStatus>("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [service, setService] = useState("")
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus("submitting")
+    setErrorMessage("")
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      service,
+      message: formData.get("message") as string,
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (!res.ok) {
+        const body = await res.json()
+        throw new Error(body.error || "Something went wrong.")
+      }
+
+      setStatus("success")
+      form.reset()
+      setService("")
+    } catch (err) {
+      setStatus("error")
+      setErrorMessage(
+        err instanceof Error ? err.message : "Failed to send message. Please try again."
+      )
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="card-premium p-10 text-center" role="status">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green-50">
+          <CheckCircle className="h-7 w-7 text-brand-green-500" />
+        </div>
+        <h3 className="font-heading text-xl font-bold text-neutral-800 mb-2">
+          Message Sent!
+        </h3>
+        <p className="text-neutral-500 text-base mb-6">
+          Thank you for reaching out. A member of our team will get back to you within one business day.
+        </p>
+        <Button
+          onClick={() => setStatus("idle")}
+          variant="outline"
+          className="rounded-xl cursor-pointer"
+        >
+          Send Another Message
+        </Button>
+      </div>
+    )
+  }
+
   return (
-    <form className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <Label htmlFor="name" className="text-sm font-semibold text-neutral-700 mb-2 block">
@@ -27,6 +95,7 @@ export function ContactForm() {
             required
             className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200"
             placeholder="Your full name"
+            disabled={status === "submitting"}
           />
         </div>
 
@@ -41,6 +110,7 @@ export function ContactForm() {
             required
             className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200"
             placeholder="you@example.com"
+            disabled={status === "submitting"}
           />
         </div>
       </div>
@@ -56,6 +126,7 @@ export function ContactForm() {
             type="tel"
             className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200"
             placeholder="(813) 000-0000"
+            disabled={status === "submitting"}
           />
         </div>
 
@@ -63,7 +134,7 @@ export function ContactForm() {
           <Label htmlFor="service" className="text-sm font-semibold text-neutral-700 mb-2 block">
             Service Interest
           </Label>
-          <Select name="service">
+          <Select value={service} onValueChange={setService} disabled={status === "submitting"}>
             <SelectTrigger className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50">
               <SelectValue placeholder="Select a service..." />
             </SelectTrigger>
@@ -95,12 +166,34 @@ export function ContactForm() {
           rows={5}
           className="min-h-[140px] border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200 resize-y"
           placeholder="Tell us about your goals and how we can help..."
+          disabled={status === "submitting"}
         />
       </div>
 
-      <Button type="submit" size="lg" className="w-full sm:w-auto bg-brand-blue-500 hover:bg-brand-blue-600 min-h-[52px] px-8 font-bold rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-px">
-        <Send className="h-4 w-4 mr-2" />
-        Send Message
+      {status === "error" && (
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-200" role="alert">
+          <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+          <p className="text-red-700 text-sm">{errorMessage}</p>
+        </div>
+      )}
+
+      <Button
+        type="submit"
+        size="lg"
+        disabled={status === "submitting"}
+        className="w-full sm:w-auto bg-brand-blue-500 hover:bg-brand-blue-600 min-h-[52px] px-8 font-bold rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-px disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+      >
+        {status === "submitting" ? (
+          <>
+            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4 mr-2" />
+            Send Message
+          </>
+        )}
       </Button>
     </form>
   )

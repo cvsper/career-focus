@@ -99,9 +99,13 @@ const services: ServiceSection[] = [
 ]
 
 export const metadata: Metadata = {
-  title: "Youth Career Development | Career Focus Inc.",
+  title: "Youth Career Development",
   description:
     "Youth career development programs including paid work-based learning, career camps, post-secondary planning, self-advocacy training, and job placement for young people in transition.",
+  openGraph: {
+    title: "Youth Career Development | Career Focus Inc.",
+    description: "Work-based learning, career camps, post-secondary planning, and job placement for young people.",
+  },
 }
 
 export default function YouthServicesPage() {
@@ -115,6 +119,8 @@ export default function YouthServicesPage() {
         subtitle="Building bright futures through hands-on career development"
         primaryCta={{ label: "Join Career Camp", href: "/contact" }}
         secondaryCta={{ label: "Adult Services", href: "/adult-services" }}
+        imageSrc="/images/youth-career.jpg"
+        imageAlt="Young person learning career skills in a professional setting"
       />
 
       {/* Intro */}

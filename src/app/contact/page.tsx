@@ -38,9 +38,13 @@ const faqs = [
 ]
 
 export const metadata: Metadata = {
-  title: "Contact Us | Career Focus Inc.",
+  title: "Contact Us",
   description:
-    "Contact Career Focus Inc. to learn about our employment services. Call (813) 435-8829, email us, or visit our offices in Wesley Chapel, Tampa, or Orlando.",
+    "Contact Career Focus Inc. to learn about our employment services. Call (813) 435-8829, email us, or visit our offices in Tampa, Wesley Chapel, or Dade City.",
+  openGraph: {
+    title: "Contact Career Focus Inc.",
+    description: "Call (813) 435-8829, email us, or visit our offices across Central Florida.",
+  },
 }
 
 export default function ContactPage() {

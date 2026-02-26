@@ -58,9 +58,13 @@ const team = [
 ]
 
 export const metadata: Metadata = {
-  title: "About Career Focus Inc. | Our Mission & Team",
+  title: "About Us — Our Mission & Team",
   description:
     "Learn about Career Focus Inc., a 501(c)(3) nonprofit empowering individuals through employment services since 2013. Meet our leadership team and discover our values.",
+  openGraph: {
+    title: "About Career Focus Inc. | Our Mission & Team",
+    description: "501(c)(3) nonprofit empowering individuals through employment services since 2013.",
+  },
 }
 
 export default function AboutPage() {
@@ -74,6 +78,8 @@ export default function AboutPage() {
         subtitle="Empowering individuals through meaningful employment since 2013"
         primaryCta={{ label: "Our Services", href: "/adult-services" }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        imageSrc="/images/career-coaching.jpg"
+        imageAlt="Career coach helping a professional prepare for success"
       />
 
       {/* Story Section */}

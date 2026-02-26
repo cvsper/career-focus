@@ -95,9 +95,13 @@ const services: ServiceSection[] = [
 ]
 
 export const metadata: Metadata = {
-  title: "Adult Employment Services | Career Focus Inc.",
+  title: "Adult Employment Services",
   description:
     "Comprehensive adult employment services including supported employment, on-the-job training, vocational evaluations, and benefits counseling for adults with disabilities, veterans, and workforce re-entrants.",
+  openGraph: {
+    title: "Adult Employment Services | Career Focus Inc.",
+    description: "Supported employment, on-the-job training, vocational evaluations, and benefits counseling.",
+  },
 }
 
 export default function AdultServicesPage() {
@@ -111,6 +115,8 @@ export default function AdultServicesPage() {
         subtitle="Empowering adults to achieve meaningful career goals through personalized support"
         primaryCta={{ label: "Get Started", href: "/contact" }}
         secondaryCta={{ label: "Youth Services", href: "/youth-services" }}
+        imageSrc="/images/adult-training.jpg"
+        imageAlt="Professional handshake representing employment partnership"
       />
 
       {/* Intro */}

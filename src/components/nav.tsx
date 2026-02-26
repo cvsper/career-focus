@@ -61,14 +61,18 @@ export function Nav() {
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label} className="relative group">
-                <button className="flex items-center gap-1 px-3.5 py-2 text-neutral-600 hover:text-neutral-900 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
+                <button
+                  className="flex items-center gap-1 px-3.5 py-2 text-neutral-600 hover:text-neutral-900 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
                 </button>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible focus-within:opacity-100 focus-within:visible transition-all duration-200" role="menu">
                   <div className="bg-white rounded-2xl shadow-elevated border border-neutral-100 py-2 px-1 min-w-[240px]">
                     {link.children.map((child) => (
-                      <a key={child.href} href={child.href} className="flex flex-col gap-0.5 px-4 py-3 rounded-xl text-neutral-700 hover:bg-brand-blue-50 hover:text-brand-blue-600 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
+                      <a key={child.href} href={child.href} role="menuitem" className="flex flex-col gap-0.5 px-4 py-3 rounded-xl text-neutral-700 hover:bg-brand-blue-50 hover:text-brand-blue-600 transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
                         <span className="font-semibold text-[15px]">{child.label}</span>
                         {child.description && (
                           <span className="text-xs text-neutral-400">{child.description}</span>
@@ -106,7 +110,12 @@ export function Nav() {
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 top-16 z-40">
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <button
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm cursor-pointer"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation menu"
+            tabIndex={-1}
+          />
 
           {/* Panel */}
           <div className="relative bg-white h-full overflow-y-auto p-6 flex flex-col gap-2 animate-fade-in-up" style={{ animationDuration: '0.25s' }}>

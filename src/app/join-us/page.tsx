@@ -37,9 +37,13 @@ const locations = [
 ]
 
 export const metadata: Metadata = {
-  title: "Locations & Hours | Career Focus Inc.",
+  title: "Locations & Hours",
   description:
-    "Visit Career Focus Inc. at our three Central Florida locations in Wesley Chapel, Tampa, and Orlando. Find office hours, directions, and contact information.",
+    "Visit Career Focus Inc. at our three Central Florida locations in Tampa, Wesley Chapel, and Dade City. Find office hours, directions, and contact information.",
+  openGraph: {
+    title: "Locations & Hours | Career Focus Inc.",
+    description: "Three offices across Central Florida — Tampa, Wesley Chapel, and Dade City.",
+  },
 }
 
 export default function JoinUsPage() {
