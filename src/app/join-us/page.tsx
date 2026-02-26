@@ -47,49 +47,51 @@ export default function JoinUsPage() {
       {/* Hero */}
       <Hero
         compact
+        overline="VISIT US"
         title="Join Us"
-        subtitle="Three locations across Florida"
+        subtitle="Three locations across Central Florida ready to serve you"
         primaryCta={{ label: "Contact Us", href: "/contact" }}
         secondaryCta={{ label: "Our Services", href: "/adult-services" }}
       />
 
       {/* Locations */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 mb-4">
+          <div className="text-center mb-14">
+            <p className="overline text-brand-blue-500 mb-3">Offices</p>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Our Locations
             </h2>
-            <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+            <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
               Visit us at any of our three offices across Central Florida.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:gap-8 md:grid-cols-3">
             {locations.map((location) => (
               <div
                 key={location.name}
-                className="rounded-xl border border-neutral-200 bg-white p-8 shadow-sm"
+                className="card-premium p-8"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue-50">
-                  <MapPin className="h-6 w-6 text-brand-blue-500" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
+                  <MapPin className="h-7 w-7 text-brand-blue-500" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-neutral-800 mb-3">
+                <h3 className="font-heading text-xl font-bold text-neutral-800 mb-3">
                   {location.name}
                 </h3>
-                <p className="text-neutral-600 text-base leading-relaxed mb-1">
+                <p className="text-neutral-500 text-base leading-relaxed mb-1">
                   {location.address}
                 </p>
-                <p className="text-neutral-600 text-base leading-relaxed mb-4">
+                <p className="text-neutral-500 text-base leading-relaxed mb-5">
                   {location.city}
                 </p>
                 <a
                   href={location.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-brand-blue-500 font-semibold hover:underline cursor-pointer transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                  className="inline-flex items-center text-brand-blue-500 font-semibold text-sm hover:text-brand-blue-600 cursor-pointer transition-colors duration-200"
                 >
                   Get Directions
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ExternalLink className="ml-1.5 h-4 w-4" />
                 </a>
               </div>
             ))}
@@ -98,53 +100,49 @@ export default function JoinUsPage() {
       </section>
 
       {/* Contact Info */}
-      <section className="bg-neutral-50 py-16 md:py-24">
+      <section className="py-20 md:py-28 section-cool">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 mb-8">
+            <p className="overline text-brand-blue-500 mb-3">Connect</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight mb-10">
               Get in Touch
             </h2>
 
             {/* Phone */}
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Phone className="h-5 w-5 text-brand-blue-500" />
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-50">
+                <Phone className="h-5 w-5 text-brand-blue-500" />
+              </div>
               <a
                 href="tel:8134358829"
-                className="text-lg text-neutral-700 hover:text-brand-blue-500 font-medium cursor-pointer transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                className="text-lg text-neutral-700 hover:text-brand-blue-500 font-medium cursor-pointer transition-colors duration-200"
               >
                 (813) 435-8829
               </a>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center justify-center gap-6 mb-8">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-neutral-200 text-neutral-500 hover:text-brand-blue-500 hover:border-brand-blue-200 transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-neutral-200 text-neutral-500 hover:text-brand-blue-500 hover:border-brand-blue-200 transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white border border-neutral-200 text-neutral-500 hover:text-brand-blue-500 hover:border-brand-blue-200 transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
+            <div className="flex items-center justify-center gap-3 mb-10">
+              {[
+                { icon: Facebook, label: "Facebook" },
+                { icon: Instagram, label: "Instagram" },
+                { icon: Linkedin, label: "LinkedIn" },
+              ].map(({ icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="flex h-11 w-11 items-center justify-center rounded-xl bg-white border border-neutral-200 text-neutral-400 hover:text-brand-blue-500 hover:border-brand-blue-200 hover:shadow-sm transition-all duration-200 cursor-pointer"
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
 
             <Button
               asChild
               size="lg"
-              className="bg-brand-blue-500 hover:bg-brand-blue-600 min-h-12 px-8 font-semibold"
+              className="bg-brand-blue-500 hover:bg-brand-blue-600 min-h-[52px] px-8 font-bold rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-px"
             >
               <a href="/contact">Send Us a Message</a>
             </Button>

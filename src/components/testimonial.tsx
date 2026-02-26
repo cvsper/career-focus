@@ -1,3 +1,5 @@
+import { Quote } from "lucide-react"
+
 interface TestimonialProps {
   quote: string
   name: string
@@ -6,15 +8,21 @@ interface TestimonialProps {
 
 export function Testimonial({ quote, name, source }: TestimonialProps) {
   return (
-    <blockquote className="rounded-r-lg border-l-4 border-brand-green-500 bg-neutral-50 px-8 py-6">
-      <p className="text-neutral-700 text-lg italic leading-relaxed mb-4 relative">
-        <span className="absolute -top-4 -left-2 font-heading text-5xl text-brand-green-500/30" aria-hidden="true">&ldquo;</span>
-        {quote}
+    <blockquote className="relative">
+      {/* Decorative quote icon */}
+      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green-50">
+        <Quote className="h-6 w-6 text-brand-green-500" />
+      </div>
+
+      <p className="text-neutral-700 text-xl md:text-2xl font-heading font-medium leading-relaxed mb-6 tracking-tight">
+        &ldquo;{quote}&rdquo;
       </p>
-      <footer>
+
+      <footer className="flex items-center gap-3">
+        <div className="h-px flex-1 max-w-[40px] bg-brand-green-300" />
         <cite className="not-italic">
           <span className="font-semibold text-neutral-800">{name}</span>
-          {source && <span className="text-neutral-500 ml-2">{source}</span>}
+          {source && <span className="text-neutral-400 ml-2 text-sm">{source}</span>}
         </cite>
       </footer>
     </blockquote>

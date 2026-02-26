@@ -1,4 +1,4 @@
-import { LucideIcon } from "lucide-react"
+import { LucideIcon, ArrowRight } from "lucide-react"
 
 interface ServiceCardProps {
   icon: LucideIcon
@@ -10,30 +10,30 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon: Icon, title, description, href, benefits }: ServiceCardProps) {
   return (
-    <div className="group rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all duration-200 hover:shadow-lg hover:border-brand-blue-100 hover:-translate-y-0.5 cursor-pointer">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue-50">
-        <Icon className="h-6 w-6 text-brand-blue-500" />
+    <a href={href} className="group card-premium p-8 flex flex-col cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none">
+      <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 group-hover:from-brand-blue-100 group-hover:to-brand-blue-50 transition-all duration-300">
+        <Icon className="h-7 w-7 text-brand-blue-500" />
       </div>
-      <h3 className="font-heading text-xl font-semibold text-neutral-800 mb-2">
+      <h3 className="font-heading text-xl font-bold text-neutral-800 mb-2 group-hover:text-brand-blue-600 transition-colors duration-200">
         {title}
       </h3>
-      <p className="text-neutral-600 text-base leading-relaxed mb-4">
+      <p className="text-neutral-500 text-base leading-relaxed mb-5">
         {description}
       </p>
       {benefits && benefits.length > 0 && (
-        <ul className="mb-4 space-y-2">
+        <ul className="mb-6 space-y-2.5 flex-1">
           {benefits.map((benefit) => (
-            <li key={benefit} className="flex items-start gap-2 text-sm text-neutral-600">
-              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-green-500" />
+            <li key={benefit} className="flex items-start gap-2.5 text-sm text-neutral-600">
+              <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-green-400" />
               {benefit}
             </li>
           ))}
         </ul>
       )}
-      <a href={href} className="inline-flex items-center text-brand-blue-500 font-semibold hover:underline cursor-pointer transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
+      <span className="inline-flex items-center text-brand-blue-500 font-semibold text-sm mt-auto group-hover:text-brand-blue-600 transition-colors duration-200">
         Learn more
-        <span className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
+        <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+      </span>
+    </a>
   )
 }

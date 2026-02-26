@@ -49,22 +49,24 @@ export default function ContactPage() {
       {/* Hero */}
       <Hero
         compact
+        overline="GET IN TOUCH"
         title="Contact Us"
-        subtitle="We'd love to hear from you"
+        subtitle="We'd love to hear from you and help you get started"
         primaryCta={{ label: "Call Us", href: "tel:8134358829" }}
         secondaryCta={{ label: "Our Locations", href: "/join-us" }}
       />
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
             {/* Contact Form */}
             <div>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 mb-2">
-                Send Us a Message
+              <p className="overline text-brand-blue-500 mb-3">Send a Message</p>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 mb-2 tracking-tight">
+                How Can We Help?
               </h2>
-              <p className="text-neutral-600 text-base leading-relaxed mb-8">
+              <p className="text-neutral-500 text-base leading-relaxed mb-8">
                 Fill out the form below and a member of our team will get back to
                 you within one business day.
               </p>
@@ -72,20 +74,20 @@ export default function ContactPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-4">
               {/* Phone */}
-              <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="card-premium p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue-50 shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Phone className="h-5 w-5 text-brand-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-neutral-800 mb-1">
+                    <h3 className="font-heading text-sm font-bold text-neutral-800 mb-1">
                       Phone
                     </h3>
                     <a
                       href="tel:8134358829"
-                      className="text-neutral-600 hover:text-brand-blue-500 cursor-pointer transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                      className="text-neutral-500 hover:text-brand-blue-500 cursor-pointer transition-colors duration-200"
                     >
                       (813) 435-8829
                     </a>
@@ -94,18 +96,18 @@ export default function ContactPage() {
               </div>
 
               {/* Email */}
-              <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="card-premium p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue-50 shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Mail className="h-5 w-5 text-brand-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-neutral-800 mb-1">
+                    <h3 className="font-heading text-sm font-bold text-neutral-800 mb-1">
                       Email
                     </h3>
                     <a
                       href="mailto:info@careerfocusinc.com"
-                      className="text-neutral-600 hover:text-brand-blue-500 cursor-pointer transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                      className="text-neutral-500 hover:text-brand-blue-500 cursor-pointer transition-colors duration-200"
                     >
                       info@careerfocusinc.com
                     </a>
@@ -114,16 +116,16 @@ export default function ContactPage() {
               </div>
 
               {/* Locations */}
-              <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="card-premium p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue-50 shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <MapPin className="h-5 w-5 text-brand-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-neutral-800 mb-1">
+                    <h3 className="font-heading text-sm font-bold text-neutral-800 mb-1">
                       Locations
                     </h3>
-                    <ul className="space-y-2 text-neutral-600 text-sm">
+                    <ul className="space-y-2 text-neutral-500 text-sm">
                       <li>
                         <span className="font-medium text-neutral-700">
                           Wesley Chapel (HQ)
@@ -151,16 +153,16 @@ export default function ContactPage() {
               </div>
 
               {/* Hours */}
-              <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="card-premium p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue-50 shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Clock className="h-5 w-5 text-brand-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-neutral-800 mb-1">
+                    <h3 className="font-heading text-sm font-bold text-neutral-800 mb-1">
                       Office Hours
                     </h3>
-                    <p className="text-neutral-600 text-sm">
+                    <p className="text-neutral-500 text-sm">
                       Monday &ndash; Friday
                       <br />
                       9:00 AM &ndash; 5:00 PM
@@ -174,24 +176,25 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-neutral-50 py-16 md:py-24">
+      <section className="py-20 md:py-28 section-cool">
         <div className="mx-auto max-w-3xl px-4 md:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 mb-4">
-              Frequently Asked Questions
+          <div className="text-center mb-14">
+            <p className="overline text-brand-blue-500 mb-3">FAQ</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight mb-4">
+              Common Questions
             </h2>
-            <p className="text-neutral-600 text-lg">
+            <p className="text-neutral-500 text-lg">
               Find answers to common questions about our programs and services.
             </p>
           </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-6 md:p-8">
+          <div className="card-premium p-6 md:p-8">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-base font-semibold text-neutral-800 text-left">
+                  <AccordionTrigger className="text-base font-semibold text-neutral-800 text-left font-heading">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-neutral-600 text-base leading-relaxed">
+                  <AccordionContent className="text-neutral-500 text-base leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

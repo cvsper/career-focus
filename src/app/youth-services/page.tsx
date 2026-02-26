@@ -110,17 +110,19 @@ export default function YouthServicesPage() {
       {/* Hero */}
       <Hero
         compact
+        overline="FOR YOUNG PEOPLE"
         title="Youth Services"
-        subtitle="Building Bright Futures for Young People"
+        subtitle="Building bright futures through hands-on career development"
         primaryCta={{ label: "Join Career Camp", href: "/contact" }}
-        secondaryCta={{ label: "View Adult Services", href: "/adult-services" }}
+        secondaryCta={{ label: "Adult Services", href: "/adult-services" }}
       />
 
       {/* Intro */}
-      <section className="py-16 md:py-20">
+      <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-3xl">
-            <p className="text-neutral-600 text-lg leading-relaxed">
+            <p className="overline text-brand-green-500 mb-3">Overview</p>
+            <p className="text-neutral-500 text-lg leading-relaxed">
               Career Focus helps young people in transition build the skills,
               confidence, and connections they need for long-term career success.
               Our youth programs combine hands-on learning, mentorship, and
@@ -138,26 +140,26 @@ export default function YouthServicesPage() {
         return (
           <section
             key={service.title}
-            className={`py-16 md:py-20 ${isAlt ? "bg-neutral-50" : "bg-white"}`}
+            className={`py-16 md:py-24 ${isAlt ? "section-warm" : "bg-white"}`}
           >
             <div className="mx-auto max-w-7xl px-4 md:px-8">
               <div
                 className={`grid gap-8 md:grid-cols-[auto_1fr] items-start ${
                   service.special
-                    ? "rounded-xl border-2 border-brand-green-200 bg-brand-green-50/30 p-8"
+                    ? "rounded-2xl border-2 border-brand-green-200 bg-brand-green-50/20 p-8 md:p-10"
                     : ""
                 }`}
               >
                 {/* Icon */}
                 <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-full shrink-0 ${
+                  className={`flex h-16 w-16 items-center justify-center rounded-2xl shrink-0 ${
                     service.special
-                      ? "bg-brand-green-100"
-                      : "bg-brand-blue-50"
+                      ? "bg-gradient-to-br from-brand-green-100 to-brand-green-50"
+                      : "bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50"
                   }`}
                 >
                   <Icon
-                    className={`h-7 w-7 ${
+                    className={`h-8 w-8 ${
                       service.special
                         ? "text-brand-green-600"
                         : "text-brand-blue-500"
@@ -168,31 +170,25 @@ export default function YouthServicesPage() {
                 {/* Content */}
                 <div>
                   <div className="flex flex-wrap items-center gap-3 mb-3">
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800">
+                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 tracking-tight">
                       {service.title}
                     </h2>
                     {service.badge && (
-                      <span className="inline-flex items-center rounded-full bg-brand-green-100 px-3 py-1 text-xs font-semibold text-brand-green-700">
+                      <span className="inline-flex items-center rounded-full bg-brand-green-100 px-3 py-1 text-xs font-bold text-brand-green-700 tracking-wide">
                         {service.badge}
                       </span>
                     )}
                   </div>
-                  <p className="text-neutral-600 text-base leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-neutral-500 text-base leading-relaxed mb-8 max-w-2xl">
                     {service.description}
                   </p>
-                  <ul className="grid gap-3 sm:grid-cols-2">
+                  <ul className="grid gap-4 sm:grid-cols-2">
                     {service.benefits.map((benefit) => (
                       <li
                         key={benefit}
-                        className="flex items-start gap-3 text-neutral-700"
+                        className="flex items-start gap-3 text-neutral-600"
                       >
-                        <CheckCircle
-                          className={`h-5 w-5 shrink-0 mt-0.5 ${
-                            service.special
-                              ? "text-brand-green-500"
-                              : "text-brand-green-500"
-                          }`}
-                        />
+                        <CheckCircle className="h-5 w-5 text-brand-green-400 shrink-0 mt-0.5" />
                         <span className="text-base">{benefit}</span>
                       </li>
                     ))}
@@ -209,7 +205,7 @@ export default function YouthServicesPage() {
         title="Ready to Get Started?"
         subtitle="Help your young person build the skills and confidence for career success."
         primaryCta={{ label: "Join Career Camp", href: "/contact" }}
-        secondaryCta={{ label: "Get Started", href: "/contact" }}
+        secondaryCta={{ label: "Contact Us", href: "/contact" }}
       />
     </>
   )

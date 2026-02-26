@@ -93,17 +93,19 @@ export default function AdultServicesPage() {
       {/* Hero */}
       <Hero
         compact
+        overline="FOR ADULTS"
         title="Adult Services"
-        subtitle="Empowering adults to achieve career goals"
+        subtitle="Empowering adults to achieve meaningful career goals through personalized support"
         primaryCta={{ label: "Get Started", href: "/contact" }}
-        secondaryCta={{ label: "View Youth Services", href: "/youth-services" }}
+        secondaryCta={{ label: "Youth Services", href: "/youth-services" }}
       />
 
       {/* Intro */}
-      <section className="py-16 md:py-20">
+      <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-3xl">
-            <p className="text-neutral-600 text-lg leading-relaxed">
+            <p className="overline text-brand-blue-500 mb-3">Overview</p>
+            <p className="text-neutral-500 text-lg leading-relaxed">
               Career Focus provides a full range of employment services designed
               to help adults with disabilities, veterans, and individuals
               re-entering the workforce achieve their career goals. Our
@@ -121,30 +123,30 @@ export default function AdultServicesPage() {
         return (
           <section
             key={service.title}
-            className={`py-16 md:py-20 ${isAlt ? "bg-neutral-50" : "bg-white"}`}
+            className={`py-16 md:py-24 ${isAlt ? "section-cool" : "bg-white"}`}
           >
             <div className="mx-auto max-w-7xl px-4 md:px-8">
               <div className="grid gap-8 md:grid-cols-[auto_1fr] items-start">
                 {/* Icon */}
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue-50 shrink-0">
-                  <Icon className="h-7 w-7 text-brand-blue-500" />
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
+                  <Icon className="h-8 w-8 text-brand-blue-500" />
                 </div>
 
                 {/* Content */}
                 <div>
-                  <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 mb-3">
+                  <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 mb-3 tracking-tight">
                     {service.title}
                   </h2>
-                  <p className="text-neutral-600 text-base leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-neutral-500 text-base leading-relaxed mb-8 max-w-2xl">
                     {service.description}
                   </p>
-                  <ul className="grid gap-3 sm:grid-cols-2">
+                  <ul className="grid gap-4 sm:grid-cols-2">
                     {service.benefits.map((benefit) => (
                       <li
                         key={benefit}
-                        className="flex items-start gap-3 text-neutral-700"
+                        className="flex items-start gap-3 text-neutral-600"
                       >
-                        <CheckCircle className="h-5 w-5 text-brand-green-500 shrink-0 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 text-brand-green-400 shrink-0 mt-0.5" />
                         <span className="text-base">{benefit}</span>
                       </li>
                     ))}

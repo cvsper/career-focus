@@ -1,63 +1,104 @@
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react"
+
+const footerLinks = {
+  services: [
+    { label: "Adult Services", href: "/adult-services" },
+    { label: "Youth Services", href: "/youth-services" },
+  ],
+  organization: [
+    { label: "About", href: "/about" },
+    { label: "Join Us", href: "/join-us" },
+    { label: "Partners", href: "/community-partners" },
+    { label: "Contact", href: "/contact" },
+  ],
+}
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-900 text-white">
-      <div className="mx-auto max-w-7xl px-4 md:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <footer className="relative bg-neutral-950 text-white overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 opacity-40" style={{
+        background: 'radial-gradient(ellipse at 20% 100%, rgba(0,82,204,0.15) 0%, transparent 50%)'
+      }} />
+
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           {/* Brand */}
-          <div>
-            <p className="font-heading font-bold text-xl mb-4">
+          <div className="lg:col-span-1">
+            <a href="/" className="inline-block font-heading font-bold text-xl mb-4 cursor-pointer">
               <span className="text-brand-green-400">Career</span>
-              <span className="text-brand-blue-300">FocusInc.</span>
-            </p>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Empowering individuals to achieve meaningful employment.
+              <span className="text-brand-blue-300">Focus</span>
+              <span className="text-neutral-500 font-medium text-lg">Inc.</span>
+            </a>
+            <p className="text-neutral-400 text-sm leading-relaxed max-w-[260px]">
+              Empowering individuals to achieve meaningful employment and self-sufficiency since 2013.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li><a href="/adult-services" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">Adult Services</a></li>
-              <li><a href="/youth-services" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">Youth Services</a></li>
+            <h3 className="overline text-neutral-500 mb-5">Services</h3>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="group inline-flex items-center text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer">
+                    {link.label}
+                    <ArrowUpRight className="h-3 w-3 ml-1 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Organization */}
           <div>
-            <h3 className="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Organization</h3>
-            <ul className="space-y-2">
-              <li><a href="/about" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">About</a></li>
-              <li><a href="/join-us" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">Join Us</a></li>
-              <li><a href="/community-partners" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">Partners</a></li>
-              <li><a href="/contact" className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">Contact</a></li>
+            <h3 className="overline text-neutral-500 mb-5">Organization</h3>
+            <ul className="space-y-3">
+              {footerLinks.organization.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="group inline-flex items-center text-neutral-400 hover:text-white text-sm transition-colors duration-200 cursor-pointer">
+                    {link.label}
+                    <ArrowUpRight className="h-3 w-3 ml-1 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Connect */}
           <div>
-            <h3 className="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Connect</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-neutral-400 text-sm">
-                <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="tel:8134358829" className="hover:text-white transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">(813) 435-8829</a>
+            <h3 className="overline text-neutral-500 mb-5">Connect</h3>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3 text-neutral-400 text-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5">
+                  <Phone className="h-3.5 w-3.5" />
+                </div>
+                <a href="tel:8134358829" className="hover:text-white transition-colors duration-200 cursor-pointer">(813) 435-8829</a>
               </li>
-              <li className="flex items-center gap-2 text-neutral-400 text-sm">
-                <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:info@careerfocusinc.org" className="hover:text-white transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 focus-visible:rounded-md focus-visible:outline-none">info@careerfocusinc.org</a>
+              <li className="flex items-center gap-3 text-neutral-400 text-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5">
+                  <Mail className="h-3.5 w-3.5" />
+                </div>
+                <a href="mailto:info@careerfocusinc.org" className="hover:text-white transition-colors duration-200 cursor-pointer">info@careerfocusinc.org</a>
               </li>
-              <li className="flex items-start gap-2 text-neutral-400 text-sm">
-                <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                <span>Wesley Chapel, FL<br />Tampa, FL<br />Orlando, FL</span>
+              <li className="flex items-start gap-3 text-neutral-400 text-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 shrink-0">
+                  <MapPin className="h-3.5 w-3.5" />
+                </div>
+                <span>Wesley Chapel &middot; Tampa &middot; Orlando</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-neutral-800 pt-8 text-center text-neutral-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Career Focus Inc. 501(c)(3). All rights reserved.</p>
+        {/* Bottom bar */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-neutral-500 text-xs">
+            &copy; {new Date().getFullYear()} Career Focus Inc. 501(c)(3). All rights reserved.
+          </p>
+          <p className="text-neutral-600 text-xs">
+            Discover, Develop, Succeed.
+          </p>
         </div>
       </div>
     </footer>
