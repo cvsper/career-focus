@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import { Users, Briefcase, Target, Sparkles, ArrowRight, Star, Heart, TrendingUp } from "lucide-react"
 import { Hero } from "@/components/hero"
 import { ServiceCard } from "@/components/service-card"
-import { Testimonial } from "@/components/testimonial"
 import { CtaSection } from "@/components/cta-section"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export const metadata: Metadata = {
   title: "Career Focus Inc. | Discover, Develop, Succeed",
@@ -145,25 +145,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-4 md:px-8">
-          <p className="overline text-brand-green-500 mb-8">What People Say</p>
-          <div className="space-y-6">
-            <Testimonial
-              quote="Participating in the Career Camp was a game-changer for me. I gained real skills and confidence that changed the trajectory of my career."
-              name="Career Camp Participant"
-            />
-            <Testimonial
-              quote="Quentin and Jalen completed the summer career camp and successfully finished their on-the-job training at Walgreens."
-              name="Career Camp Success Story"
-            />
-            <Testimonial
-              quote="Bella successfully completed her on-the-job training at Selah East Stables as an equestrian trainer, gaining knowledge in horse handling, grooming, and training techniques."
-              name="On-the-Job Training Graduate"
-            />
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* CTA */}
       <CtaSection
