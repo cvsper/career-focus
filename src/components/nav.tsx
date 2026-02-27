@@ -45,15 +45,13 @@ export function Nav() {
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled
-        ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.06),0_4px_16px_rgba(0,0,0,0.04)]"
+        ? "bg-white/90 backdrop-blur-xl border-b-2 border-brand-blue-500"
         : "bg-white/95 backdrop-blur-sm"
     }`}>
       <nav className="mx-auto max-w-7xl px-4 md:px-8 flex items-center justify-between h-16 md:h-[72px]">
         {/* Logo */}
-        <a href="/" className="flex-shrink-0 font-heading font-bold text-[22px] tracking-tight cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
-          <span className="text-gradient-green">Career</span>
-          <span className="text-gradient-blue">Focus</span>
-          <span className="text-neutral-400 font-medium text-lg">Inc.</span>
+        <a href="/" className="flex-shrink-0 font-heading font-extrabold text-[26px] tracking-tight cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
+          <span className="bg-gradient-to-r from-brand-blue-600 to-brand-green-500 bg-clip-text text-transparent">CareerFocus</span>
         </a>
 
         {/* Desktop Nav */}
@@ -62,7 +60,7 @@ export function Nav() {
             link.children ? (
               <div key={link.label} className="relative group">
                 <button
-                  className="flex items-center gap-1 px-3.5 py-2 text-neutral-600 hover:text-neutral-900 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
+                  className="flex items-center gap-1 px-3.5 py-2 text-neutral-600 hover:text-brand-blue-500 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none"
                   aria-expanded="false"
                   aria-haspopup="true"
                 >
@@ -83,13 +81,13 @@ export function Nav() {
                 </div>
               </div>
             ) : (
-              <a key={link.href} href={link.href} className="px-3.5 py-2 text-neutral-600 hover:text-neutral-900 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
+              <a key={link.href} href={link.href} className="px-3.5 py-2 text-neutral-600 hover:text-brand-blue-500 font-medium text-[15px] transition-colors duration-200 cursor-pointer rounded-lg focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none">
                 {link.label}
               </a>
             )
           )}
           <div className="ml-3">
-            <Button asChild className="bg-brand-blue-500 hover:bg-brand-blue-600 font-semibold rounded-xl h-10 px-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-px">
+            <Button asChild className="bg-brand-green-500 hover:bg-brand-green-600 text-white font-semibold rounded-full h-10 px-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-px">
               <a href="/contact">Get Started</a>
             </Button>
           </div>
@@ -109,34 +107,40 @@ export function Nav() {
       {/* Mobile overlay */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 top-16 z-40">
-          {/* Backdrop */}
-          <button
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm cursor-pointer"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close navigation menu"
-            tabIndex={-1}
-          />
-
-          {/* Panel */}
-          <div className="relative bg-white h-full overflow-y-auto p-6 flex flex-col gap-2 animate-fade-in-up" style={{ animationDuration: '0.25s' }}>
-            {navLinks.map((link) =>
-              link.children ? (
-                <div key={link.label} className="space-y-1 py-2">
-                  <p className="overline text-neutral-400 px-3 mb-2">{link.label}</p>
-                  {link.children.map((child) => (
-                    <a key={child.href} href={child.href} className="block px-3 py-2.5 text-lg text-neutral-700 cursor-pointer rounded-xl transition-all duration-200 hover:bg-brand-blue-50 hover:text-brand-blue-600 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none" onClick={() => setMobileOpen(false)}>
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
-              ) : (
-                <a key={link.href} href={link.href} className="px-3 py-2.5 text-lg text-neutral-700 cursor-pointer rounded-xl transition-all duration-200 hover:bg-brand-blue-50 hover:text-brand-blue-600 focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:rounded-md focus-visible:outline-none" onClick={() => setMobileOpen(false)}>
-                  {link.label}
-                </a>
-              )
-            )}
-            <div className="mt-auto pt-6">
-              <Button asChild size="lg" className="bg-brand-blue-500 hover:bg-brand-blue-600 font-semibold w-full rounded-xl h-12">
+          {/* Full-screen dark overlay */}
+          <div className="absolute inset-0 bg-brand-blue-900 overflow-y-auto flex flex-col p-8 pt-12">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link, i) =>
+                link.children ? (
+                  <div key={link.label} className="space-y-3">
+                    <p className="text-sm uppercase tracking-widest text-white/40 font-medium px-1">{link.label}</p>
+                    {link.children.map((child, childIdx) => (
+                      <a
+                        key={child.href}
+                        href={child.href}
+                        className="block text-3xl font-heading font-bold text-white cursor-pointer transition-all duration-200 hover:text-white/80 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-900 focus-visible:rounded-md focus-visible:outline-none animate-slide-in-left"
+                        style={{ animationDelay: `${(i + childIdx) * 80}ms`, animationFillMode: 'both' }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-3xl font-heading font-bold text-white cursor-pointer transition-all duration-200 hover:text-white/80 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue-900 focus-visible:rounded-md focus-visible:outline-none animate-slide-in-left"
+                    style={{ animationDelay: `${i * 80}ms`, animationFillMode: 'both' }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
+            </div>
+            <div className="mt-auto pt-10">
+              <Button asChild size="lg" className="bg-white text-brand-blue-900 hover:bg-white/90 font-bold w-full rounded-full h-14 text-lg shadow-lg transition-all duration-200">
                 <a href="/contact" onClick={() => setMobileOpen(false)}>Get Started</a>
               </Button>
             </div>

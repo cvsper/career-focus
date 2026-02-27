@@ -97,7 +97,7 @@ export default function AboutPage() {
           <div className="grid gap-12 lg:gap-20 md:grid-cols-2 items-center">
             {/* Text */}
             <div>
-              <p className="overline text-brand-blue-500 mb-3">Our Story</p>
+              <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Our Story</p>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 mb-6 tracking-tight">
                 From a Small Initiative to a Community Institution
               </h2>
@@ -143,10 +143,10 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 md:py-28 section-cool">
+      <section className="py-20 md:py-28 bg-brand-blue-50/50">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-blue-500 mb-3">What We Believe</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">What We Believe</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Our Values
             </h2>
@@ -160,7 +160,7 @@ export default function AboutPage() {
               return (
                 <div
                   key={value.title}
-                  className="card-premium p-8 animate-fade-in-up"
+                  className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-8 animate-fade-in-up"
                   style={{ animationDelay: `${i * 80}ms` }}
                 >
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
@@ -183,7 +183,7 @@ export default function AboutPage() {
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-green-500 mb-3">Leadership</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-green-500 mb-3">Leadership</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Meet Our Team
             </h2>

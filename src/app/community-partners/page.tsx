@@ -72,7 +72,7 @@ export default function CommunityPartnersPage() {
           <div className="grid gap-12 lg:gap-20 md:grid-cols-2 items-center">
             {/* Text */}
             <div>
-              <p className="overline text-brand-blue-500 mb-3">Why Partner</p>
+              <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Why Partner</p>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 mb-6 tracking-tight">
                 Why Partner with Career Focus?
               </h2>
@@ -125,7 +125,7 @@ export default function CommunityPartnersPage() {
       <section className="py-20 md:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-green-500 mb-3">Our Partners</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-green-500 mb-3">Our Partners</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Trusted Community Partners
             </h2>
@@ -144,7 +144,7 @@ export default function CommunityPartnersPage() {
             ].map((partner) => (
               <div
                 key={partner}
-                className="card-premium p-6 text-center"
+                className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6 text-center"
               >
                 <p className="font-heading text-base font-semibold text-neutral-800">
                   {partner}
@@ -156,10 +156,10 @@ export default function CommunityPartnersPage() {
       </section>
 
       {/* Three Paths */}
-      <section className="py-20 md:py-28 section-cool">
+      <section className="py-20 md:py-28 bg-brand-blue-50/50">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-blue-500 mb-3">Opportunities</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Opportunities</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Ways to Partner
             </h2>
@@ -173,7 +173,7 @@ export default function CommunityPartnersPage() {
               return (
                 <div
                   key={path.title}
-                  className="card-premium p-8 flex flex-col"
+                  className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-8 flex flex-col"
                 >
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
                     <Icon className="h-7 w-7 text-brand-blue-500" />

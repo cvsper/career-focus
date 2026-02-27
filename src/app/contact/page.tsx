@@ -67,7 +67,7 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
             {/* Contact Form */}
             <div>
-              <p className="overline text-brand-blue-500 mb-3">Send a Message</p>
+              <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Send a Message</p>
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-neutral-800 mb-2 tracking-tight">
                 How Can We Help?
               </h2>
@@ -81,7 +81,7 @@ export default function ContactPage() {
             {/* Sidebar */}
             <div className="space-y-4">
               {/* Phone */}
-              <div className="card-premium p-6">
+              <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Phone className="h-5 w-5 text-brand-blue-500" />
@@ -101,7 +101,7 @@ export default function ContactPage() {
               </div>
 
               {/* Email */}
-              <div className="card-premium p-6">
+              <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Mail className="h-5 w-5 text-brand-blue-500" />
@@ -121,7 +121,7 @@ export default function ContactPage() {
               </div>
 
               {/* Locations */}
-              <div className="card-premium p-6">
+              <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <MapPin className="h-5 w-5 text-brand-blue-500" />
@@ -166,7 +166,7 @@ export default function ContactPage() {
               </div>
 
               {/* Hours */}
-              <div className="card-premium p-6">
+              <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 shrink-0">
                     <Clock className="h-5 w-5 text-brand-blue-500" />
@@ -189,10 +189,10 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28 section-cool">
+      <section className="py-20 md:py-28 bg-brand-blue-50/50">
         <div className="mx-auto max-w-3xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-blue-500 mb-3">FAQ</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">FAQ</p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight mb-4">
               Common Questions
             </h2>
@@ -200,7 +200,7 @@ export default function ContactPage() {
               Find answers to common questions about our programs and services.
             </p>
           </div>
-          <div className="card-premium p-6 md:p-8">
+          <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-6 md:p-8">
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

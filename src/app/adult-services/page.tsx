@@ -124,7 +124,7 @@ export default function AdultServicesPage() {
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-3xl">
-            <p className="overline text-brand-blue-500 mb-3">Overview</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Overview</p>
             <p className="text-neutral-500 text-lg leading-relaxed">
               Career Focus provides a full range of employment services designed
               to help adults with disabilities, veterans, and individuals
@@ -143,7 +143,7 @@ export default function AdultServicesPage() {
         return (
           <section
             key={service.title}
-            className={`py-16 md:py-24 ${isAlt ? "section-cool" : "bg-white"}`}
+            className={`py-16 md:py-24 ${isAlt ? "bg-brand-blue-50/50" : "bg-white"}`}
           >
             <div className="mx-auto max-w-7xl px-4 md:px-8">
               <div className="grid gap-8 md:grid-cols-[auto_1fr] items-start">

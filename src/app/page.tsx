@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { Users, Briefcase, Target, Sparkles, ArrowRight, Star, Heart, TrendingUp } from "lucide-react"
+import Image from "next/image"
+import { Users, Briefcase } from "lucide-react"
 import { Hero } from "@/components/hero"
 import { ServiceCard } from "@/components/service-card"
 import { CtaSection } from "@/components/cta-section"
@@ -18,20 +19,14 @@ export const metadata: Metadata = {
   },
 }
 
-const impactNumbers = [
-  { icon: Star, value: "13+", label: "Years of Impact", description: "Serving Central Florida communities" },
-  { icon: Heart, value: "11", label: "Programs", description: "Tailored career development services" },
-  { icon: TrendingUp, value: "3", label: "Locations", description: "Wesley Chapel, Tampa & Dade City" },
-]
-
 export default function Home() {
   return (
     <>
-      {/* Hero */}
+      {/* 1. Hero — photo-dominant with green stats strip */}
       <Hero
-        overline="501(c)(3) NONPROFIT SINCE 2013"
-        title="Discover, Develop, Succeed."
+        title={`Discover,\nDevelop,\nSucceed.`}
         subtitle="Career Focus Inc. empowers youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce through comprehensive career development programs."
+        overline="501(c)(3) NONPROFIT SINCE 2013"
         primaryCta={{ label: "Explore Services", href: "/adult-services" }}
         secondaryCta={{ label: "Get in Touch", href: "/contact" }}
         imageSrc="/images/community-volunteers.jpg"
@@ -43,32 +38,39 @@ export default function Home() {
         ]}
       />
 
-      {/* Mission & Vision */}
-      <section className="py-20 md:py-32 bg-mesh-blue">
+      {/* 2. Mission/About — asymmetric split on white */}
+      <section className="py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="grid gap-6 md:gap-8 md:grid-cols-2">
-            {/* Mission */}
-            <div className="card-premium p-10 animate-fade-in-up">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/60">
-                <Target className="h-7 w-7 text-brand-blue-500" />
-              </div>
-              <h2 className="font-heading text-2xl font-bold text-neutral-800 mb-3 tracking-tight">
-                Our Mission
+          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+            {/* Left — bold pull-quote (55%) */}
+            <div className="md:col-span-7">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight text-neutral-800 tracking-tight">
+                We believe everyone deserves a career, not just a job<span className="text-accent-coral-500">.</span>
               </h2>
-              <p className="text-neutral-500 text-base leading-relaxed">
+              <p className="mt-6 text-neutral-500 text-lg leading-relaxed max-w-[52ch]">
                 To empower individuals by providing them with the necessary tools and resources to explore, pursue, and maintain meaningful employment within their community.
               </p>
             </div>
 
-            {/* Vision */}
-            <div className="card-premium p-10 animate-fade-in-up delay-100">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-green-50 to-brand-green-100/60">
-                <Sparkles className="h-7 w-7 text-brand-green-500" />
+            {/* Right — photo with diagonal clip (45%) */}
+            <div className="md:col-span-5">
+              <div className="overflow-hidden rounded-2xl" style={{ clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0 100%)" }}>
+                <Image
+                  src="/images/team-meeting-real.jpg"
+                  alt="Career Focus team collaborating"
+                  width={560}
+                  height={420}
+                  className="w-full aspect-[4/3] object-cover"
+                />
               </div>
-              <h2 className="font-heading text-2xl font-bold text-neutral-800 mb-3 tracking-tight">
-                Our Vision
-              </h2>
-              <p className="text-neutral-500 text-base leading-relaxed">
+            </div>
+          </div>
+
+          {/* Vision statement below split */}
+          <div className="mt-16 max-w-3xl">
+            <div className="flex items-start gap-3">
+              <span className="text-brand-green-500 text-6xl font-heading font-bold leading-none -mt-2 select-none" aria-hidden="true">&ldquo;</span>
+              <p className="text-2xl font-heading italic text-brand-blue-700 leading-relaxed">
                 Career Focus Inc. envisions a world where individuals, regardless of their background, have equal access to meaningful employment opportunities.
               </p>
             </div>
@@ -76,84 +78,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Impact Numbers */}
-      <section className="py-20 md:py-28 section-warm">
+      {/* 3. Services — dark feature section */}
+      <section className="bg-brand-blue-950 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="text-center mb-16">
-            <p className="overline text-brand-amber-500 mb-3">Our Impact</p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight">
-              Making a Real Difference
-            </h2>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
-            {impactNumbers.map((item) => {
-              const Icon = item.icon
-              return (
-                <div key={item.label} className="text-center">
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue-50">
-                    <Icon className="h-7 w-7 text-brand-blue-500" />
-                  </div>
-                  <p className="font-heading text-5xl md:text-6xl font-extrabold text-gradient-blue tracking-tight">{item.value}</p>
-                  <p className="font-heading text-lg font-semibold text-neutral-800 mt-2">{item.label}</p>
-                  <p className="text-neutral-400 text-sm mt-1">{item.description}</p>
-                </div>
-              )
-            })}
+          <p className="text-xs tracking-widest text-brand-blue-400 uppercase mb-4">[ SERVICES ]</p>
+          <h2 className="font-heading text-4xl sm:text-5xl font-semibold text-white tracking-tight mb-14">
+            What We Do
+          </h2>
+
+          <div className="grid gap-6 md:gap-8 sm:grid-cols-5">
+            <div className="sm:col-span-3">
+              <ServiceCard
+                icon={Users}
+                title="Youth Services"
+                description="Work-based learning, career camps, post-secondary planning, and self-advocacy training to build bright futures."
+                href="/youth-services"
+                variant="dark"
+                imageSrc="/images/youth-career.jpg"
+                benefits={[
+                  "Paid work-based learning",
+                  "Career Camp programs",
+                  "Post-secondary education planning",
+                  "Job search & direct placement",
+                ]}
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <ServiceCard
+                icon={Briefcase}
+                title="Adult Services"
+                description="Supported employment, on-the-job training, vocational evaluations, and benefits counseling for career goals."
+                href="/adult-services"
+                variant="dark"
+                imageSrc="/images/adult-training.jpg"
+                benefits={[
+                  "Supported employment",
+                  "On the job training",
+                  "Vocational evaluations",
+                  "Benefits counseling",
+                ]}
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-20 md:py-32 section-cool">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="text-center mb-14">
-            <p className="overline text-brand-blue-500 mb-3">What We Offer</p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
-              Our Services
-            </h2>
-            <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
-              Comprehensive employment programs tailored for youth and adults
-              across Central Florida.
-            </p>
-          </div>
-          <div className="grid gap-6 md:gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-            <ServiceCard
-              icon={Users}
-              title="Youth Services"
-              description="Work-based learning, career camps, post-secondary planning, and self-advocacy training to build bright futures."
-              href="/youth-services"
-              benefits={[
-                "Paid work-based learning",
-                "Career Camp programs",
-                "Post-secondary education planning",
-                "Job search & direct placement",
-              ]}
-            />
-            <ServiceCard
-              icon={Briefcase}
-              title="Adult Services"
-              description="Supported employment, on-the-job training, vocational evaluations, and benefits counseling for career goals."
-              href="/adult-services"
-              benefits={[
-                "Supported employment",
-                "On the job training",
-                "Vocational evaluations",
-                "Benefits counseling",
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
+      {/* 4. Testimonials — editorial single-quote rotator */}
       <TestimonialsSection />
 
-      {/* CTA */}
+      {/* 5. CTA — bold green block with diagonal top */}
       <CtaSection
         title="Ready to Start Your Journey?"
         subtitle="Take the first step toward meaningful employment and career development."
         primaryCta={{ label: "Contact Us", href: "/contact" }}
         showPhone
+        variant="green"
+        angleTop
       />
     </>
   )

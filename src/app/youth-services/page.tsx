@@ -128,7 +128,7 @@ export default function YouthServicesPage() {
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-3xl">
-            <p className="overline text-brand-green-500 mb-3">Overview</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-green-500 mb-3">Overview</p>
             <p className="text-neutral-500 text-lg leading-relaxed">
               Career Focus helps young people in transition build the skills,
               confidence, and connections they need for long-term career success.
@@ -147,7 +147,7 @@ export default function YouthServicesPage() {
         return (
           <section
             key={service.title}
-            className={`py-16 md:py-24 ${isAlt ? "section-warm" : "bg-white"}`}
+            className={`py-16 md:py-24 ${isAlt ? "bg-brand-amber-50/50" : "bg-white"}`}
           >
             <div className="mx-auto max-w-7xl px-4 md:px-8">
               <div

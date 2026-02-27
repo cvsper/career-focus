@@ -1,10 +1,11 @@
 "use client"
 
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1"
-import type { Testimonial } from "@/components/ui/testimonials-columns-1"
-import { motion } from "motion/react"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { motion, AnimatePresence } from "motion/react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
-const testimonials: Testimonial[] = [
+const testimonials = [
   {
     text: "Participating in the Career Camp was a game-changer for me. I gained real skills and confidence that changed the trajectory of my career.",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -61,39 +62,165 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-const firstColumn = testimonials.slice(0, 3)
-const secondColumn = testimonials.slice(3, 6)
-const thirdColumn = testimonials.slice(6, 9)
-
 export default function TestimonialsSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [direction, setDirection] = useState(1)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const prev = useCallback(() => {
+    setDirection(-1)
+    setActiveIndex((current) =>
+      current === 0 ? testimonials.length - 1 : current - 1
+    )
+  }, [])
+
+  const next = useCallback(() => {
+    setDirection(1)
+    setActiveIndex((current) =>
+      current === testimonials.length - 1 ? 0 : current + 1
+    )
+  }, [])
+
+  const startAutoRotate = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
+      setDirection(1)
+      setActiveIndex((current) =>
+        current === testimonials.length - 1 ? 0 : current + 1
+      )
+    }, 6000)
+  }, [])
+
+  const stopAutoRotate = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+  }, [])
+
+  // Auto-rotate on mount
+  useEffect(() => {
+    startAutoRotate()
+    return () => stopAutoRotate()
+  }, [startAutoRotate, stopAutoRotate])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        prev()
+        stopAutoRotate()
+      } else if (e.key === "ArrowRight") {
+        next()
+        stopAutoRotate()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [prev, next, stopAutoRotate])
+
   return (
-    <section className="bg-background py-20 md:py-28 relative">
-      <div className="mx-auto max-w-7xl px-4 md:px-8 z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
+    <section className="bg-warm-cream py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div
+          onMouseEnter={stopAutoRotate}
+          onMouseLeave={startAutoRotate}
         >
-          <div className="flex justify-center">
-            <p className="overline text-brand-green-500 border border-brand-green-200 py-1 px-4 rounded-lg">
-              Testimonials
-            </p>
+          <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 min-h-[280px]">
+            {/* Large index number */}
+            <div className="hidden md:block text-[120px] font-light leading-none text-neutral-900/10 font-heading select-none shrink-0">
+              {String(activeIndex + 1).padStart(2, "0")}
+            </div>
+
+            {/* Content area */}
+            <div className="flex-1 relative overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={activeIndex}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction * 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction * -24 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {/* Quote */}
+                  <blockquote className="text-2xl md:text-3xl font-light leading-relaxed tracking-tight text-neutral-800 mb-8">
+                    &ldquo;{testimonials[activeIndex].text}&rdquo;
+                  </blockquote>
+
+                  {/* Attribution */}
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+                      <Image
+                        src={testimonials[activeIndex].image}
+                        alt={testimonials[activeIndex].name}
+                        width={48}
+                        height={48}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold text-neutral-800">
+                        {testimonials[activeIndex].name}
+                      </p>
+                      <p className="text-sm text-brand-blue-500 uppercase tracking-wide font-medium">
+                        {testimonials[activeIndex].role}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-800 mt-5 text-center">
-            What People Say
-          </h2>
-          <p className="text-center mt-5 text-neutral-500 text-lg">
-            Real stories from the individuals, families, and partners we serve.
-          </p>
-        </motion.div>
+          {/* Navigation */}
+          <div className="flex items-center justify-between mt-12 pt-8 border-t border-neutral-200">
+            {/* Line indicators */}
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > activeIndex ? 1 : -1)
+                    setActiveIndex(i)
+                  }}
+                  className={`py-5 transition-all duration-300 cursor-pointer`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                >
+                  <span className={`block h-px transition-all duration-300 ${
+                    i === activeIndex
+                      ? "w-12 bg-brand-blue-900"
+                      : "w-6 bg-neutral-300 group-hover:bg-neutral-400"
+                  }`} />
+                </button>
+              ))}
+            </div>
 
-        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+            {/* Count + arrows */}
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-neutral-400 font-mono tabular-nums">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(testimonials.length).padStart(2, "0")}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prev}
+                  className="h-11 w-11 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition-colors cursor-pointer"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={next}
+                  className="h-11 w-11 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition-colors cursor-pointer"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

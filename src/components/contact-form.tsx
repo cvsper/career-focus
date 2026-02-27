@@ -61,7 +61,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="card-premium p-10 text-center" role="status">
+      <div className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-10 text-center" role="status">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green-50">
           <CheckCircle className="h-7 w-7 text-brand-green-500" />
         </div>

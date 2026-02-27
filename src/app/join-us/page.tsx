@@ -59,7 +59,7 @@ export default function JoinUsPage() {
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="text-center mb-14">
-            <p className="overline text-brand-blue-500 mb-3">Offices</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Offices</p>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 tracking-tight mb-4">
               Our Locations
             </h2>
@@ -71,7 +71,7 @@ export default function JoinUsPage() {
             {locations.map((location) => (
               <div
                 key={location.name}
-                className="card-premium p-8"
+                className="bg-white border border-neutral-100 rounded-2xl shadow-sm p-8"
               >
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
                   <MapPin className="h-7 w-7 text-brand-blue-500" />
@@ -107,7 +107,7 @@ export default function JoinUsPage() {
       </section>
 
       {/* Office Hours */}
-      <section className="py-20 md:py-28 section-warm">
+      <section className="py-20 md:py-28 bg-brand-amber-50/50">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <div className="mb-5 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
@@ -127,10 +127,10 @@ export default function JoinUsPage() {
       </section>
 
       {/* Contact Info */}
-      <section className="py-20 md:py-28 section-cool">
+      <section className="py-20 md:py-28 bg-brand-blue-50/50">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="overline text-brand-blue-500 mb-3">Connect</p>
+            <p className="font-heading text-xs font-semibold tracking-[0.12em] uppercase text-brand-blue-500 mb-3">Connect</p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight mb-10">
               Get in Touch
             </h2>
