@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/chat-widget";
+import { PageTransition } from "@/components/page-transition";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -144,7 +145,9 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Nav />
-        <main id="main-content">{children}</main>
+        <main id="main-content">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <ChatWidget />
         <Analytics />

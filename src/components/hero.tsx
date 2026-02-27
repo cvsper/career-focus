@@ -27,7 +27,7 @@ export function Hero({ overline, title, subtitle, primaryCta, secondaryCta, stat
             src={imageSrc}
             alt={imageAlt || ""}
             fill
-            className="object-cover"
+            className="object-cover object-[center_25%]"
             priority
           />
           {/* Gradient overlay for readability */}
