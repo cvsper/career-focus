@@ -6,6 +6,7 @@ import { CtaSection } from "@/components/cta-section"
 import TestimonialsSection from "@/components/testimonials-section"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: "Career Focus Inc. | Discover, Develop, Succeed",
   description:
     "Career Focus Inc. is a 501(c)(3) nonprofit providing employment services and career development to youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce across Central Florida.",

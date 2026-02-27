@@ -6,6 +6,7 @@ import {
   Facebook,
   Instagram,
   Linkedin,
+  Clock,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Hero } from "@/components/hero"
@@ -16,6 +17,7 @@ const locations = [
     name: "Tampa (HQ)",
     address: "550 N. Reo St, Suite 300",
     city: "Tampa, FL 33609",
+    phone: "(813) 435-8829",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=550+N+Reo+St+Suite+300+Tampa+FL+33609",
   },
@@ -27,22 +29,16 @@ const locations = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=6013+Wesley+Grove+Blvd+Suite+202+Wesley+Chapel+FL+33544",
   },
-  {
-    name: "Dade City",
-    address: "Address TBD",
-    city: "Dade City, FL",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Dade+City+FL",
-  },
 ]
 
 export const metadata: Metadata = {
-  title: "Locations & Hours",
+  alternates: { canonical: "/join-us" },
+  title: "Our Locations",
   description:
-    "Visit Career Focus Inc. at our three Central Florida locations in Tampa, Wesley Chapel, and Dade City. Find office hours, directions, and contact information.",
+    "Visit Career Focus Inc. at our Central Florida locations in Tampa and Wesley Chapel. Find office hours, directions, and contact information.",
   openGraph: {
-    title: "Locations & Hours | Career Focus Inc.",
-    description: "Three offices across Central Florida — Tampa, Wesley Chapel, and Dade City.",
+    title: "Our Locations | Career Focus Inc.",
+    description: "Two offices across Central Florida — Tampa and Wesley Chapel.",
   },
 }
 
@@ -54,7 +50,7 @@ export default function JoinUsPage() {
         compact
         overline="VISIT US"
         title="Join Us"
-        subtitle="Three locations across Central Florida ready to serve you"
+        subtitle="Two locations across Central Florida ready to serve you"
         primaryCta={{ label: "Contact Us", href: "/contact" }}
         secondaryCta={{ label: "Our Services", href: "/adult-services" }}
       />
@@ -106,6 +102,26 @@ export default function JoinUsPage() {
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Office Hours */}
+      <section className="py-20 md:py-28 section-warm">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="mb-5 mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50">
+              <Clock className="h-7 w-7 text-brand-blue-500" />
+            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight mb-4">
+              Office Hours
+            </h2>
+            <p className="text-neutral-500 text-lg mb-2">
+              Monday &ndash; Friday
+            </p>
+            <p className="font-heading text-2xl font-bold text-neutral-800">
+              9:00 AM &ndash; 5:00 PM
+            </p>
           </div>
         </div>
       </section>

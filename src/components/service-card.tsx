@@ -10,7 +10,7 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon: Icon, title, description, href, benefits }: ServiceCardProps) {
   return (
-    <a href={href} className="group card-premium p-8 flex flex-col cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none">
+    <a href={href} aria-label={`Learn more about ${title}`} className="group card-premium p-8 flex flex-col cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none">
       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-50 to-brand-blue-100/50 group-hover:from-brand-blue-100 group-hover:to-brand-blue-50 transition-all duration-300">
         <Icon className="h-7 w-7 text-brand-blue-500" />
       </div>

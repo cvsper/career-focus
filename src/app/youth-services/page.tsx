@@ -99,6 +99,7 @@ const services: ServiceSection[] = [
 ]
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/youth-services" },
   title: "Youth Career Development",
   description:
     "Youth career development programs including paid work-based learning, career camps, post-secondary planning, self-advocacy training, and job placement for young people in transition.",

@@ -87,12 +87,13 @@ export function ContactForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <Label htmlFor="name" className="text-sm font-semibold text-neutral-700 mb-2 block">
-            Full Name
+            Full Name <span className="text-red-500" aria-hidden="true">*</span>
           </Label>
           <Input
             id="name"
             name="name"
             required
+            aria-required="true"
             className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200"
             placeholder="Your full name"
             disabled={status === "submitting"}
@@ -101,13 +102,14 @@ export function ContactForm() {
 
         <div>
           <Label htmlFor="email" className="text-sm font-semibold text-neutral-700 mb-2 block">
-            Email
+            Email <span className="text-red-500" aria-hidden="true">*</span>
           </Label>
           <Input
             id="email"
             name="email"
             type="email"
             required
+            aria-required="true"
             className="h-12 border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200"
             placeholder="you@example.com"
             disabled={status === "submitting"}
@@ -157,12 +159,13 @@ export function ContactForm() {
 
       <div>
         <Label htmlFor="message" className="text-sm font-semibold text-neutral-700 mb-2 block">
-          Message
+          Message <span className="text-red-500" aria-hidden="true">*</span>
         </Label>
         <Textarea
           id="message"
           name="message"
           required
+          aria-required="true"
           rows={5}
           className="min-h-[140px] border-neutral-200 rounded-xl bg-neutral-50/50 focus:bg-white focus:border-brand-blue-300 focus:ring-brand-blue-500/10 transition-all duration-200 resize-y"
           placeholder="Tell us about your goals and how we can help..."

@@ -58,6 +58,7 @@ const team = [
 ]
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Us — Our Mission & Team",
   description:
     "Learn about Career Focus Inc., a 501(c)(3) nonprofit empowering individuals through employment services since 2013. Meet our leadership team and discover our values.",

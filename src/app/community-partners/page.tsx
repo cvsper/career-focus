@@ -43,6 +43,7 @@ const paths = [
 ]
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/community-partners" },
   title: "Community Partners",
   description:
     "Partner with Career Focus Inc. to build an inclusive workforce. Access pre-screened candidates, receive job coaching support, and qualify for tax incentives through inclusive hiring.",
@@ -185,6 +186,7 @@ export default function CommunityPartnersPage() {
                   </p>
                   <a
                     href={path.cta.href}
+                    aria-label={`${path.cta.label} — ${path.title}`}
                     className="inline-flex items-center text-brand-blue-500 font-semibold text-sm hover:text-brand-blue-600 cursor-pointer transition-colors duration-200"
                   >
                     {path.cta.label}

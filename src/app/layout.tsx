@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     "job training",
   ],
   authors: [{ name: "Career Focus Inc." }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Career Focus Inc. | Discover, Develop, Succeed",
     description:
@@ -51,8 +54,8 @@ export const metadata: Metadata = {
       "Empowering individuals to achieve meaningful employment across Central Florida.",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: process.env.VERCEL_ENV === "production",
+    follow: process.env.VERCEL_ENV === "production",
   },
 };
 

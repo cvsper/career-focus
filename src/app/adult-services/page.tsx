@@ -95,6 +95,7 @@ const services: ServiceSection[] = [
 ]
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/adult-services" },
   title: "Adult Employment Services",
   description:
     "Comprehensive adult employment services including supported employment, on-the-job training, vocational evaluations, and benefits counseling for adults with disabilities, veterans, and workforce re-entrants.",

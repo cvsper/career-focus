@@ -38,6 +38,7 @@ const faqs = [
 ]
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact Us",
   description:
     "Contact Career Focus Inc. to learn about our employment services. Call (813) 435-8829, email us, or visit our offices in Tampa, Wesley Chapel, or Dade City.",
@@ -149,15 +150,6 @@ export default function ContactPage() {
                         Wesley Chapel, FL 33544
                         <br />
                         (813) 995-8473
-                      </li>
-                      <li>
-                        <span className="font-medium text-neutral-700">
-                          Dade City
-                        </span>
-                        <br />
-                        Dade City, FL
-                        <br />
-                        <span className="text-neutral-400 text-xs">Address TBD</span>
                       </li>
                       <li>
                         <span className="font-medium text-neutral-700">
