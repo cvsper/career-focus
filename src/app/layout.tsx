@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { ChatWidget } from "@/components/chat-widget";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -145,6 +146,7 @@ export default function RootLayout({
         <Nav />
         <main id="main-content">{children}</main>
         <Footer />
+        <ChatWidget />
         <Analytics />
       </body>
     </html>
