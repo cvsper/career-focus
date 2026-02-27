@@ -52,8 +52,14 @@ const team = [
     imageSrc: "/images/team/cassandra.jpg",
   },
   {
+    name: "Taveesha Guyton",
+    title: "Vice President",
+    bio: "Registered Behavior Technician with the BACB. Extensive experience in the Autism community. Holds a B.A. in Psychology and BSW from the University of South Florida.",
+    imageSrc: "/images/team/taveesha.jpg",
+  },
+  {
     name: "Camille Felicia",
-    title: "Secretary",
+    title: "Treasurer",
     bio: "USF alumna with 10+ years administrative experience. Six years with Kepro (Medicare contractor). Brings organizational expertise to Career Focus.",
     imageSrc: "/images/team/camille.jpg",
   },
