@@ -1,11 +1,13 @@
 "use client"
 
-import React, { useState, useRef, useEffect, type KeyboardEvent } from "react"
+import React, { useState, useRef, useEffect, useCallback, type KeyboardEvent } from "react"
 import { useChat } from "@ai-sdk/react"
 import type { UIMessage } from "ai"
+import { useConversation } from "@elevenlabs/react"
 import { AnimatePresence, motion } from "motion/react"
-import { X, Send, Loader2, Volume2, VolumeOff } from "lucide-react"
+import { X, Send, Loader2, Mic, MicOff, MessageSquareText } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getSignedUrl } from "@/app/actions/get-signed-url"
 
 function getMessageText(msg: UIMessage): string {
   return msg.parts
@@ -15,7 +17,7 @@ function getMessageText(msg: UIMessage): string {
 }
 
 /* ── Color Orb ── */
-function ColorOrb({ dimension = "24px", className }: { dimension?: string; className?: string }) {
+function ColorOrb({ dimension = "24px", className, speaking = false }: { dimension?: string; className?: string; speaking?: boolean }) {
   const dimValue = parseInt(dimension.replace("px", ""), 10)
   const blur = dimValue < 50 ? Math.max(dimValue * 0.008, 1) : Math.max(dimValue * 0.015, 4)
   const contrast = dimValue < 50 ? Math.max(dimValue * 0.004, 1.2) : Math.max(dimValue * 0.008, 1.5)
@@ -34,7 +36,7 @@ function ColorOrb({ dimension = "24px", className }: { dimension?: string; class
         "--accent1": "oklch(55% 0.20 250)",
         "--accent2": "oklch(60% 0.18 200)",
         "--accent3": "oklch(50% 0.16 280)",
-        "--spin-duration": "20s",
+        "--spin-duration": speaking ? "4s" : "20s",
         "--blur": `${blur}px`,
         "--contrast": adj,
         "--dot": `${dot}px`,
@@ -93,19 +95,147 @@ function ColorOrb({ dimension = "24px", className }: { dimension?: string; class
   )
 }
 
+/* ── Voice Panel (ElevenLabs Conversational AI) ── */
+function VoicePanel({ onSwitchToText, onClose }: { onSwitchToText: () => void; onClose: () => void }) {
+  const [voiceMessages, setVoiceMessages] = useState<{ source: string; message: string }[]>([])
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const conversation = useConversation({
+    onMessage: (msg: { source: string; message: string }) => {
+      setVoiceMessages((prev) => [...prev, { source: msg.source, message: msg.message }])
+    },
+    onError: (error: unknown) => {
+      console.error("Voice agent error:", error)
+    },
+  })
+
+  const { status, isSpeaking } = conversation
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" })
+  }, [voiceMessages])
+
+  const toggleVoice = useCallback(async () => {
+    if (status === "connected") {
+      await conversation.endSession()
+    } else {
+      try {
+        const { signedUrl } = await getSignedUrl()
+        await conversation.startSession({ signedUrl })
+      } catch (err) {
+        console.error("Failed to start voice session:", err)
+      }
+    }
+  }, [status, conversation])
+
+  const isConnected = status === "connected"
+
+  return (
+    <motion.div
+      key="voice"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, delay: 0.05 }}
+      className="flex flex-col h-full"
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-neutral-100 shrink-0">
+        <div className="flex items-center gap-2.5">
+          <ColorOrb dimension="24px" speaking={isSpeaking} />
+          <div>
+            <h2 className="font-heading text-sm font-bold text-neutral-800 leading-tight">
+              Voice Assistant
+            </h2>
+            <p className="text-[11px] text-neutral-400 leading-tight">
+              {isConnected ? (isSpeaking ? "Speaking..." : "Listening...") : "Tap mic to start"}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={onSwitchToText}
+            aria-label="Switch to text chat"
+            className="h-7 w-7 rounded-full hover:bg-neutral-100 flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <MessageSquareText className="h-3.5 w-3.5 text-neutral-400" />
+          </button>
+          <button
+            onClick={onClose}
+            aria-label="Close chat"
+            className="h-7 w-7 rounded-full hover:bg-neutral-100 flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <X className="h-3.5 w-3.5 text-neutral-500" />
+          </button>
+        </div>
+      </div>
+
+      {/* Voice visualization + transcript */}
+      <div className="flex-1 flex flex-col min-h-0">
+        {/* Orb area */}
+        <div className="flex items-center justify-center py-6">
+          <motion.div
+            animate={{ scale: isSpeaking ? [1, 1.08, 1] : 1 }}
+            transition={{ repeat: isSpeaking ? Infinity : 0, duration: 1.5, ease: "easeInOut" }}
+          >
+            <ColorOrb dimension="100px" speaking={isSpeaking} />
+          </motion.div>
+        </div>
+
+        {/* Transcript */}
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 pb-3 space-y-2 min-h-0">
+          {voiceMessages.map((msg, i) => (
+            <div key={i} className={`flex ${msg.source === "user" ? "justify-end" : "justify-start"}`}>
+              <div
+                className={`max-w-[85%] rounded-2xl px-3.5 py-2 text-[13px] leading-relaxed ${
+                  msg.source === "user"
+                    ? "bg-brand-blue-500 text-white rounded-br-md"
+                    : "bg-neutral-100 text-neutral-800 rounded-bl-md"
+                }`}
+              >
+                {msg.message}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mic button */}
+      <div className="shrink-0 border-t border-neutral-100 px-3 py-3 flex justify-center">
+        <button
+          onClick={toggleVoice}
+          aria-label={isConnected ? "End voice conversation" : "Start voice conversation"}
+          className={cn(
+            "h-14 w-14 rounded-full flex items-center justify-center transition-all cursor-pointer",
+            isConnected
+              ? "bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/25"
+              : "bg-brand-blue-500 hover:bg-brand-blue-600 shadow-lg shadow-brand-blue-500/25"
+          )}
+        >
+          {isConnected ? (
+            <MicOff className="h-6 w-6 text-white" />
+          ) : (
+            <Mic className="h-6 w-6 text-white" />
+          )}
+        </button>
+      </div>
+    </motion.div>
+  )
+}
+
 /* ── Chat Widget ── */
 const PANEL_W = 400
 const PANEL_H = 500
 
+type Mode = "text" | "voice"
+
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
+  const [mode, setMode] = useState<Mode>("text")
   const [input, setInput] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
-
-  const [voiceOn, setVoiceOn] = useState(false)
-  const spokenRef = useRef<Set<string>>(new Set())
 
   const { messages, sendMessage, status } = useChat()
   const isLoading = status === "submitted" || status === "streaming"
@@ -114,52 +244,9 @@ export function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  // Auto-speak new assistant messages with ElevenLabs
   useEffect(() => {
-    if (!voiceOn || typeof window === "undefined") return
-    if (status === "submitted" || status === "streaming") return // wait until done
-    const last = messages[messages.length - 1]
-    if (!last || last.role !== "assistant" || spokenRef.current.has(last.id)) return
-    const text = getMessageText(last)
-    if (!text) return
-    spokenRef.current.add(last.id)
-
-    // Truncate long responses to save TTS quota
-    const ttsText = text.length > 500 ? text.slice(0, 500) + "..." : text
-
-    // Try ElevenLabs first, fall back to browser SpeechSynthesis
-    fetch("/api/tts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: ttsText }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`TTS failed: ${res.status}`)
-        return res.blob()
-      })
-      .then((blob) => {
-        const url = URL.createObjectURL(blob)
-        const audio = new Audio(url)
-        audio.onended = () => URL.revokeObjectURL(url)
-        audio.play().catch((e) => {
-          console.warn("Audio play blocked:", e)
-          URL.revokeObjectURL(url)
-        })
-      })
-      .catch(() => {
-        // Fallback: browser SpeechSynthesis
-        if ("speechSynthesis" in window) {
-          const utter = new SpeechSynthesisUtterance(ttsText)
-          utter.rate = 1
-          utter.pitch = 1
-          window.speechSynthesis.speak(utter)
-        }
-      })
-  }, [messages, status, voiceOn])
-
-  useEffect(() => {
-    if (isOpen) setTimeout(() => inputRef.current?.focus(), 200)
-  }, [isOpen])
+    if (isOpen && mode === "text") setTimeout(() => inputRef.current?.focus(), 200)
+  }, [isOpen, mode])
 
   useEffect(() => {
     function onKey(e: globalThis.KeyboardEvent) {
@@ -177,10 +264,6 @@ export function ChatWidget() {
       document.removeEventListener("mousedown", onClick)
     }
   }, [isOpen])
-
-  function open() {
-    setIsOpen(true)
-  }
 
   const WELCOME_TEXT =
     "Hi! I'm the Career Focus assistant. I can help you learn about our programs, services, and how to get started. What would you like to know?"
@@ -212,14 +295,14 @@ export function ChatWidget() {
         }}
         transition={{ type: "spring", stiffness: 500, damping: 40, mass: 0.8 }}
         role={isOpen ? "dialog" : undefined}
-        aria-label={isOpen ? "Career Focus Assistant chat" : undefined}
+        aria-label={isOpen ? "Career Focus Assistant" : undefined}
       >
         <AnimatePresence mode="wait">
           {!isOpen ? (
             /* ── Collapsed pill ── */
             <motion.button
               key="pill"
-              onClick={open}
+              onClick={() => setIsOpen(true)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -232,8 +315,14 @@ export function ChatWidget() {
                 Ask AI
               </span>
             </motion.button>
+          ) : mode === "voice" ? (
+            /* ── Voice mode ── */
+            <VoicePanel
+              onSwitchToText={() => setMode("text")}
+              onClose={() => setIsOpen(false)}
+            />
           ) : (
-            /* ── Expanded chat ── */
+            /* ── Text chat mode ── */
             <motion.div
               key="chat"
               initial={{ opacity: 0 }}
@@ -257,15 +346,11 @@ export function ChatWidget() {
                 </div>
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setVoiceOn((v) => !v)}
-                    aria-label={voiceOn ? "Mute voice" : "Enable voice"}
+                    onClick={() => setMode("voice")}
+                    aria-label="Switch to voice mode"
                     className="h-7 w-7 rounded-full hover:bg-neutral-100 flex items-center justify-center transition-colors cursor-pointer"
                   >
-                    {voiceOn ? (
-                      <Volume2 className="h-3.5 w-3.5 text-brand-blue-500" />
-                    ) : (
-                      <VolumeOff className="h-3.5 w-3.5 text-neutral-400" />
-                    )}
+                    <Mic className="h-3.5 w-3.5 text-neutral-400" />
                   </button>
                   <button
                     onClick={() => setIsOpen(false)}
@@ -279,7 +364,6 @@ export function ChatWidget() {
 
               {/* Messages */}
               <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0">
-                {/* Static welcome message */}
                 <div className="flex justify-start">
                   <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[14px] leading-relaxed bg-neutral-100 text-neutral-800 rounded-bl-md">
                     {WELCOME_TEXT}
