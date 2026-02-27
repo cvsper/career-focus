@@ -15,7 +15,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.careerfocusinc.com"),
+  metadataBase: new URL("https://career-focus-alpha.vercel.app"),
   title: {
     default: "Career Focus Inc. | Discover, Develop, Succeed",
     template: "%s | Career Focus Inc.",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Career Focus Inc. | Discover, Develop, Succeed",
     description:
       "Empowering individuals to achieve meaningful employment. 13+ years serving Central Florida with 11 career development programs.",
-    url: "https://www.careerfocusinc.com",
+    url: "https://career-focus-alpha.vercel.app",
     siteName: "Career Focus Inc.",
     locale: "en_US",
     type: "website",
@@ -65,8 +65,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Career Focus Inc.",
-  url: "https://www.careerfocusinc.com",
-  logo: "https://www.careerfocusinc.com/icon.png",
+  url: "https://career-focus-alpha.vercel.app",
+  logo: "https://career-focus-alpha.vercel.app/icon.png",
   description:
     "501(c)(3) nonprofit providing employment services and career development to youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce.",
   foundingDate: "2013",

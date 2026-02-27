@@ -64,10 +64,10 @@ export default function JoinUsPage() {
               Our Locations
             </h2>
             <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
-              Visit us at any of our three offices across Central Florida.
+              Visit us at either of our two offices across Central Florida.
             </p>
           </div>
-          <div className="grid gap-6 md:gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2 max-w-3xl mx-auto">
             {locations.map((location) => (
               <div
                 key={location.name}

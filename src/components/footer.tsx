@@ -88,7 +88,7 @@ export function Footer() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 shrink-0">
                   <MapPin className="h-3.5 w-3.5" />
                 </div>
-                <span>Tampa &middot; Wesley Chapel &middot; Dade City</span>
+                <span>Tampa &middot; Wesley Chapel</span>
               </li>
             </ul>
             {/* Social Links */}
