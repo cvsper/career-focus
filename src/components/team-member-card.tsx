@@ -9,20 +9,22 @@ interface TeamMemberProps {
 
 export function TeamMemberCard({ name, title: role, bio, imageSrc }: TeamMemberProps) {
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden">
+    <div className="group bg-white rounded-2xl overflow-hidden text-center">
       {/* Photo */}
-      <div className="overflow-hidden">
+      <div className="pt-8 flex justify-center">
         {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={`Photo of ${name}`}
-            width={400}
-            height={300}
-            className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <div className="h-32 w-32 rounded-full overflow-hidden">
+            <Image
+              src={imageSrc}
+              alt={`Photo of ${name}`}
+              width={128}
+              height={128}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
         ) : (
           <div
-            className="w-full aspect-[4/3] flex items-center justify-center bg-brand-blue-900 text-white text-5xl font-heading font-bold"
+            className="h-32 w-32 rounded-full flex items-center justify-center bg-brand-blue-900 text-white text-4xl font-heading font-bold"
             aria-label={`Initials of ${name}`}
             role="img"
           >
