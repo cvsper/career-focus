@@ -120,8 +120,8 @@ export default function YouthServicesPage() {
         subtitle="Building bright futures through hands-on career development"
         primaryCta={{ label: "Join Career Camp", href: "/contact" }}
         secondaryCta={{ label: "Adult Services", href: "/adult-services" }}
-        imageSrc="/images/youth-career.jpg"
-        imageAlt="Young person learning career skills in a professional setting"
+        imageSrc="/images/youth-services-hero.jpg"
+        imageAlt="Diverse group of young students laughing together outdoors"
       />
 
       {/* Intro */}

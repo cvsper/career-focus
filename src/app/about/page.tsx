@@ -49,11 +49,13 @@ const team = [
     name: "Cassandra Garvey",
     title: "President, CEO & Founder",
     bio: "Over 15 years of experience working with the disabled community in various roles including direct care and intensive case management. Degree in nursing.",
+    imageSrc: "/images/team/cassandra.jpg",
   },
   {
     name: "Camille Felicia",
     title: "Secretary",
     bio: "USF alumna with 10+ years administrative experience. Six years with Kepro (Medicare contractor). Brings organizational expertise to Career Focus.",
+    imageSrc: "/images/team/camille.jpg",
   },
 ]
 
@@ -119,8 +121,8 @@ export default function AboutPage() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/team-meeting.jpg"
-                  alt="Career Focus team collaborating in a meeting"
+                  src="/images/team-meeting-real.jpg"
+                  alt="Inclusive team meeting at Career Focus with diverse professionals collaborating"
                   width={600}
                   height={450}
                   className="w-full h-auto object-cover aspect-[4/3]"
@@ -190,6 +192,7 @@ export default function AboutPage() {
                 name={member.name}
                 title={member.title}
                 bio={member.bio}
+                imageSrc={member.imageSrc}
               />
             ))}
           </div>

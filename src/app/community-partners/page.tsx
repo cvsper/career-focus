@@ -106,8 +106,8 @@ export default function CommunityPartnersPage() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/partnership.jpg"
-                  alt="Business professionals shaking hands in a partnership meeting"
+                  src="/images/partnership-real.jpg"
+                  alt="Business professionals shaking hands, representing Career Focus partnerships"
                   width={600}
                   height={450}
                   className="w-full h-auto object-cover aspect-[4/3]"

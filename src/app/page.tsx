@@ -34,8 +34,8 @@ export default function Home() {
         subtitle="Career Focus Inc. empowers youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce through comprehensive career development programs."
         primaryCta={{ label: "Explore Services", href: "/adult-services" }}
         secondaryCta={{ label: "Get in Touch", href: "/contact" }}
-        imageSrc="/images/hero-people.jpg"
-        imageAlt="A diverse group of people smiling together, representing the community Career Focus serves"
+        imageSrc="/images/community-volunteers.jpg"
+        imageAlt="Group of young Career Focus volunteers wearing lanyards, representing the community we serve"
         stats={[
           { value: "13+", label: "Years of Service" },
           { value: "3", label: "Florida Locations" },

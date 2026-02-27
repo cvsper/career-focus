@@ -116,8 +116,8 @@ export default function AdultServicesPage() {
         subtitle="Empowering adults to achieve meaningful career goals through personalized support"
         primaryCta={{ label: "Get Started", href: "/contact" }}
         secondaryCta={{ label: "Youth Services", href: "/youth-services" }}
-        imageSrc="/images/adult-training.jpg"
-        imageAlt="Professional handshake representing employment partnership"
+        imageSrc="/images/adult-services-hero.jpg"
+        imageAlt="Woman in wheelchair browsing library resources, representing accessible career development"
       />
 
       {/* Intro */}
