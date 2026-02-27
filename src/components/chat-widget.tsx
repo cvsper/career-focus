@@ -117,29 +117,43 @@ export function ChatWidget() {
   // Auto-speak new assistant messages with ElevenLabs
   useEffect(() => {
     if (!voiceOn || typeof window === "undefined") return
+    if (status === "submitted" || status === "streaming") return // wait until done
     const last = messages[messages.length - 1]
     if (!last || last.role !== "assistant" || spokenRef.current.has(last.id)) return
-    if (status === "streaming") return // wait until done
     const text = getMessageText(last)
     if (!text) return
     spokenRef.current.add(last.id)
 
-    // Call ElevenLabs TTS API
+    // Truncate long responses to save TTS quota
+    const ttsText = text.length > 500 ? text.slice(0, 500) + "..." : text
+
+    // Try ElevenLabs first, fall back to browser SpeechSynthesis
     fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text: ttsText }),
     })
       .then((res) => {
-        if (!res.ok) throw new Error("TTS failed")
+        if (!res.ok) throw new Error(`TTS failed: ${res.status}`)
         return res.blob()
       })
       .then((blob) => {
-        const audio = new Audio(URL.createObjectURL(blob))
-        audio.play()
+        const url = URL.createObjectURL(blob)
+        const audio = new Audio(url)
+        audio.onended = () => URL.revokeObjectURL(url)
+        audio.play().catch((e) => {
+          console.warn("Audio play blocked:", e)
+          URL.revokeObjectURL(url)
+        })
       })
-      .catch((err) => {
-        console.error("TTS error:", err)
+      .catch(() => {
+        // Fallback: browser SpeechSynthesis
+        if ("speechSynthesis" in window) {
+          const utter = new SpeechSynthesisUtterance(ttsText)
+          utter.rate = 1
+          utter.pitch = 1
+          window.speechSynthesis.speak(utter)
+        }
       })
   }, [messages, status, voiceOn])
 

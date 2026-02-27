@@ -44,9 +44,9 @@ export async function POST(req: Request) {
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error("ElevenLabs API error:", errorText)
+      console.error("ElevenLabs API error:", response.status, errorText)
       return NextResponse.json(
-        { error: "Failed to generate speech" },
+        { error: "Failed to generate speech", detail: errorText },
         { status: response.status }
       )
     }
