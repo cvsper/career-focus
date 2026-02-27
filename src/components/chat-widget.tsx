@@ -98,14 +98,29 @@ function ColorOrb({ dimension = "24px", className, speaking = false }: { dimensi
 /* ── Voice Panel (ElevenLabs Conversational AI) ── */
 function VoicePanel({ onSwitchToText, onClose }: { onSwitchToText: () => void; onClose: () => void }) {
   const [voiceMessages, setVoiceMessages] = useState<{ source: string; message: string }[]>([])
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const conversation = useConversation({
-    onMessage: (msg: { source: string; message: string }) => {
-      setVoiceMessages((prev) => [...prev, { source: msg.source, message: msg.message }])
+    onConnect: ({ conversationId }) => {
+      console.log("Voice agent connected:", conversationId)
+      setErrorMsg(null)
     },
-    onError: (error: unknown) => {
-      console.error("Voice agent error:", error)
+    onDisconnect: (details) => {
+      console.log("Voice agent disconnected:", details)
+    },
+    onMessage: (msg) => {
+      setVoiceMessages((prev) => [...prev, { source: msg.source === "ai" ? "ai" : "user", message: msg.message }])
+    },
+    onStatusChange: ({ status: s }) => {
+      console.log("Voice status:", s)
+    },
+    onModeChange: ({ mode }) => {
+      console.log("Voice mode:", mode)
+    },
+    onError: (message, context) => {
+      console.error("Voice agent error:", message, context)
+      setErrorMsg(message)
     },
   })
 
@@ -119,11 +134,15 @@ function VoicePanel({ onSwitchToText, onClose }: { onSwitchToText: () => void; o
     if (status === "connected") {
       await conversation.endSession()
     } else {
+      setErrorMsg(null)
       try {
+        // Request mic permission first
+        await navigator.mediaDevices.getUserMedia({ audio: true })
         const { signedUrl } = await getSignedUrl()
         await conversation.startSession({ signedUrl })
       } catch (err) {
         console.error("Failed to start voice session:", err)
+        setErrorMsg(err instanceof Error ? err.message : "Failed to connect")
       }
     }
   }, [status, conversation])
@@ -182,8 +201,20 @@ function VoicePanel({ onSwitchToText, onClose }: { onSwitchToText: () => void; o
           </motion.div>
         </div>
 
+        {/* Error */}
+        {errorMsg && (
+          <div className="mx-4 mb-2 px-3 py-2 rounded-lg bg-red-50 text-red-600 text-[12px]">
+            {errorMsg}
+          </div>
+        )}
+
         {/* Transcript */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 pb-3 space-y-2 min-h-0">
+          {voiceMessages.length === 0 && !isConnected && (
+            <p className="text-center text-neutral-400 text-[13px] pt-4">
+              Tap the mic button to start a voice conversation
+            </p>
+          )}
           {voiceMessages.map((msg, i) => (
             <div key={i} className={`flex ${msg.source === "user" ? "justify-end" : "justify-start"}`}>
               <div
