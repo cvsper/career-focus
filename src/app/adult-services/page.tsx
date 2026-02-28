@@ -96,18 +96,75 @@ const services: ServiceSection[] = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/adult-services" },
-  title: "Adult Employment Services",
+  title: "Adult Employment Services — Job Training & Supported Employment",
   description:
-    "Comprehensive adult employment services including supported employment, on-the-job training, vocational evaluations, and benefits counseling for adults with disabilities, veterans, and workforce re-entrants.",
+    "Comprehensive employment services for adults with disabilities in Florida. Supported employment, on-the-job training (OJT), vocational evaluations, self-employment support, and benefits counseling.",
   openGraph: {
-    title: "Adult Employment Services | Career Focus Inc.",
-    description: "Supported employment, on-the-job training, vocational evaluations, and benefits counseling.",
+    title: "Adult Employment Services — Career Focus Inc.",
+    description:
+      "Job placement, on-the-job training, vocational evaluations, and benefits counseling for adults with disabilities across Florida.",
+    url: "/adult-services",
+  },
+}
+
+const adultServicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Adult Employment Services",
+  provider: {
+    "@id": "https://career-focus-alpha.vercel.app/#organization",
+  },
+  description:
+    "Comprehensive employment services for adults with disabilities including supported employment, on-the-job training, vocational evaluations, self-employment support, and benefits counseling.",
+  areaServed: { "@type": "State", name: "Florida" },
+  audience: {
+    "@type": "Audience",
+    audienceType:
+      "Adults with disabilities, veterans, adults re-entering the workforce",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Adult Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Supported Employment" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "On the Job Training (OJT)",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Supported Self Employment",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Vocational Evaluations" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Benefits Counseling" },
+      },
+    ],
   },
 }
 
 export default function AdultServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(adultServicesSchema),
+        }}
+      />
       {/* Hero */}
       <Hero
         compact

@@ -100,18 +100,84 @@ const services: ServiceSection[] = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/youth-services" },
-  title: "Youth Career Development",
+  title: "Youth Career Programs — Work-Based Learning & Career Camp",
   description:
-    "Youth career development programs including paid work-based learning, career camps, post-secondary planning, self-advocacy training, and job placement for young people in transition.",
+    "Career development programs for youth ages 16-24 in Florida. Paid work-based learning, career camp (winter, spring, summer), post-secondary planning, self-advocacy training, and job placement.",
   openGraph: {
-    title: "Youth Career Development | Career Focus Inc.",
-    description: "Work-based learning, career camps, post-secondary planning, and job placement for young people.",
+    title: "Youth Career Programs — Career Focus Inc.",
+    description:
+      "Work-based learning, career camp, post-secondary planning, and job placement for young people ages 16-24 in Florida.",
+    url: "/youth-services",
+  },
+}
+
+const youthServicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Youth Career Programs",
+  provider: {
+    "@id": "https://career-focus-alpha.vercel.app/#organization",
+  },
+  description:
+    "Career development programs for youth ages 16-24 including paid work-based learning, career camp, post-secondary planning, self-advocacy training, and job placement.",
+  areaServed: { "@type": "State", name: "Florida" },
+  audience: {
+    "@type": "Audience",
+    audienceType: "Youth in transition ages 16-24",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Youth Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Paid Work-Based Learning",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Post-Secondary Education Planning",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Self-Advocacy Training",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Job Search Support & Direct Placement",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Career Camp" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Benefits Counseling" },
+      },
+    ],
   },
 }
 
 export default function YouthServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(youthServicesSchema),
+        }}
+      />
       {/* Hero */}
       <Hero
         compact

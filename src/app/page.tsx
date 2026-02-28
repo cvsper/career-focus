@@ -8,13 +8,13 @@ import TestimonialsSection from "@/components/testimonials-section"
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "Career Focus Inc. | Discover, Develop, Succeed",
+  title: "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
   description:
-    "Career Focus Inc. is a 501(c)(3) nonprofit providing employment services and career development to youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce across Central Florida.",
+    "Career Focus Inc. is a 501(c)(3) nonprofit providing employment services, job training, and career development for youth in transition, adults with disabilities, and veterans across Florida.",
   openGraph: {
-    title: "Career Focus Inc. | Discover, Develop, Succeed",
+    title: "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
     description:
-      "Empowering individuals to achieve meaningful employment. 13+ years serving Central Florida with 11 career development programs.",
+      "Empowering individuals from diverse backgrounds to achieve their career aspirations. Serving Wesley Chapel, Tampa, and Central Florida since 2013.",
     type: "website",
   },
 }

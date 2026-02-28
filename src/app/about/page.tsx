@@ -67,12 +67,14 @@ const team = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
-  title: "About Us — Our Mission & Team",
+  title: "About Us — Our Mission, Vision & Leadership Team",
   description:
-    "Learn about Career Focus Inc., a 501(c)(3) nonprofit empowering individuals through employment services since 2013. Meet our leadership team and discover our values.",
+    "Career Focus Inc. is a 501(c)(3) nonprofit serving Florida since 2013. Meet our leadership team including CEO Cassandra Garvey, and learn about our mission to empower individuals with disabilities, veterans, and youth.",
   openGraph: {
-    title: "About Career Focus Inc. | Our Mission & Team",
-    description: "501(c)(3) nonprofit empowering individuals through employment services since 2013.",
+    title: "About Career Focus Inc. — 501(c)(3) Nonprofit Since 2013",
+    description:
+      "Meet our leadership team and learn how we empower individuals with disabilities, veterans, and youth in transition to achieve meaningful employment.",
+    url: "/about",
   },
 }
 

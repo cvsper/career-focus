@@ -44,12 +44,14 @@ const paths = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/community-partners" },
-  title: "Community Partners",
+  title: "Community Partners — Hire Inclusively & Partner With Us",
   description:
-    "Partner with Career Focus Inc. to build an inclusive workforce. Access pre-screened candidates, receive job coaching support, and qualify for tax incentives through inclusive hiring.",
+    "Partner with Career Focus Inc. to build an inclusive workforce. Employer partnerships, subcontracting opportunities, RFPs, and the Employment SUCCESS Grant for Florida businesses.",
   openGraph: {
-    title: "Community Partners | Career Focus Inc.",
-    description: "Build an inclusive workforce. Access pre-screened candidates and job coaching support.",
+    title: "Community Partners — Career Focus Inc.",
+    description:
+      "Build an inclusive workforce. Partner with Career Focus Inc. for inclusive hiring, subcontracting, and Employment SUCCESS Grant opportunities.",
+    url: "/community-partners",
   },
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/chat-widget";
@@ -17,59 +18,83 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://career-focus-alpha.vercel.app"),
   title: {
-    default: "Career Focus Inc. | Discover, Develop, Succeed",
+    default:
+      "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
     template: "%s | Career Focus Inc.",
   },
   description:
-    "Career Focus Inc. is a 501(c)(3) nonprofit providing employment services and career development to youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce across Central Florida.",
+    "Career Focus Inc. is a 501(c)(3) nonprofit providing employment services, job training, and career development for youth in transition, adults with disabilities, and veterans across Florida.",
   keywords: [
-    "career development",
-    "employment services",
-    "nonprofit",
-    "disability employment",
-    "youth services",
+    "employment services florida",
+    "disability employment support",
+    "youth career programs florida",
+    "job training nonprofit",
+    "vocational rehabilitation florida",
+    "career development tampa",
     "supported employment",
-    "Tampa",
+    "career camp florida",
+    "on the job training",
+    "benefits counseling",
     "Wesley Chapel",
-    "Dade City",
+    "Tampa",
     "Central Florida",
-    "vocational rehabilitation",
-    "job training",
   ],
   authors: [{ name: "Career Focus Inc." }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Career Focus Inc. | Discover, Develop, Succeed",
-    description:
-      "Empowering individuals to achieve meaningful employment. 13+ years serving Central Florida with 11 career development programs.",
+    type: "website",
+    locale: "en_US",
     url: "https://career-focus-alpha.vercel.app",
     siteName: "Career Focus Inc.",
-    locale: "en_US",
-    type: "website",
+    title:
+      "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
+    description:
+      "Empowering individuals from diverse backgrounds to achieve their career aspirations. Serving Wesley Chapel, Tampa, and Central Florida since 2013.",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Career Focus Inc. — Discover, Develop, Succeed",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career Focus Inc. | Discover, Develop, Succeed",
+    title: "Career Focus Inc. | Employment Services in Florida",
     description:
-      "Empowering individuals to achieve meaningful employment across Central Florida.",
+      "Nonprofit providing job training, supported employment, and career development for youth and adults across Florida.",
+    images: ["/opengraph-image.png"],
   },
   robots: {
-    index: process.env.VERCEL_ENV === "production",
-    follow: process.env.VERCEL_ENV === "production",
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
-const jsonLd = {
+const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "NonprofitOrganization",
+  "@id": "https://career-focus-alpha.vercel.app/#organization",
   name: "Career Focus Inc.",
+  alternateName: "Career Focus",
   url: "https://career-focus-alpha.vercel.app",
   logo: "https://career-focus-alpha.vercel.app/icon.png",
   description:
-    "501(c)(3) nonprofit providing employment services and career development to youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce.",
+    "501(c)(3) nonprofit providing employment services and career development for youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce across Florida.",
   foundingDate: "2013",
+  nonprofitStatus: "501(c)(3)",
+  taxID: "80-0893641",
+  slogan: "Discover, Develop, Succeed.",
   telephone: "+1-813-435-8829",
   email: "info@careerfocusinc.com",
   sameAs: [
@@ -97,20 +122,41 @@ const jsonLd = {
       addressCountry: "US",
     },
   ],
-  nonprofitStatus: "Nonprofit501c3",
-  taxID: "80-0893641",
   areaServed: {
-    "@type": "Place",
-    name: "Central Florida",
+    "@type": "State",
+    name: "Florida",
+    sameAs: "https://en.wikipedia.org/wiki/Florida",
   },
-  serviceType: [
+  founder: {
+    "@type": "Person",
+    name: "Cassandra Garvey",
+    jobTitle: "CEO / Founder",
+  },
+  employee: [
+    {
+      "@type": "Person",
+      name: "Cassandra Garvey",
+      jobTitle: "President, CEO & Founder",
+    },
+    {
+      "@type": "Person",
+      name: "Taveesha Guyton",
+      jobTitle: "Vice President",
+    },
+    {
+      "@type": "Person",
+      name: "Camille Felicia",
+      jobTitle: "Treasurer",
+    },
+  ],
+  knowsAbout: [
     "Supported Employment",
-    "On the Job Training",
-    "Vocational Evaluations",
-    "Work Incentive Counseling",
-    "Youth Career Development",
-    "Career Camp",
-    "Direct Placement",
+    "Vocational Rehabilitation",
+    "On-the-Job Training",
+    "Career Development",
+    "Disability Employment Services",
+    "Youth Career Programs",
+    "Benefits Counseling",
   ],
 };
 
@@ -134,7 +180,9 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
       </head>
       <body className="antialiased text-neutral-900 bg-white">
@@ -150,6 +198,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatWidget />
+        <GoogleAnalytics />
         <Analytics />
       </body>
     </html>

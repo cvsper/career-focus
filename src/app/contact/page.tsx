@@ -11,46 +11,109 @@ import {
 
 const faqs = [
   {
-    question: "What services do you offer?",
+    question: "What services does Career Focus Inc. offer?",
     answer:
-      "We offer comprehensive employment services including supported employment, on-the-job training, vocational evaluations, benefits counseling, and youth career development programs.",
+      "Career Focus Inc. offers comprehensive employment services including supported employment (job placement and coaching for people with disabilities), on-the-job training, vocational evaluations, supported self-employment, benefits counseling, paid work-based learning for youth, career camp programs (winter, spring, and summer), post-secondary education planning, self-advocacy training, and direct job placement. All services are available across Florida through our Tampa and Wesley Chapel offices.",
   },
   {
-    question: "Who is eligible for your programs?",
+    question: "Who is eligible for Career Focus programs?",
     answer:
-      "We serve youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce. Contact us to discuss your specific situation.",
+      "Career Focus Inc. serves four primary groups: youth in transition (ages 16-24), adults with disabilities, veterans, and adults re-entering the workforce. Eligibility varies by program — some services are funded through Vocational Rehabilitation referrals, while others are open to any qualifying individual. Contact us at (813) 435-8829 for a free consultation to determine which programs match your situation.",
   },
   {
-    question: "How do I get started?",
+    question: "How do I get started with Career Focus?",
     answer:
-      "Simply reach out through our contact form, call us at (813) 435-8829, or visit any of our three Florida locations. We'll schedule an initial consultation to discuss your goals.",
+      "Contact us by calling (813) 435-8829 or filling out the contact form on our website. We'll schedule an initial consultation to assess your needs and match you with the right services. Our offices are in Tampa (HQ) and Wesley Chapel, Florida.",
   },
   {
-    question: "Do you serve my area?",
+    question: "What areas does Career Focus serve in Florida?",
     answer:
-      "We have offices in Tampa, Wesley Chapel, and Dade City, serving communities across Central Florida.",
+      "Career Focus Inc. has two offices in Florida: Tampa (headquarters at 550 N. Reo St, Suite 300) and Wesley Chapel (6013 Wesley Grove Blvd, Suite 202). While our offices are in Central Florida, we serve individuals throughout the region. Call (813) 435-8829 to discuss services in your area.",
   },
   {
-    question: "Is there a cost for services?",
+    question: "Is there a cost for Career Focus services?",
     answer:
-      "Many of our services are funded through state and federal programs at no cost to eligible participants. Contact us to learn about eligibility requirements.",
+      "Career Focus Inc. is a 501(c)(3) nonprofit organization. Many of our services are funded through government grants, Vocational Rehabilitation partnerships, and charitable contributions, making them available at no cost to eligible participants. We also administer the Employment SUCCESS Grant to help clients with financial barriers to employment. Contact us to learn about your eligibility and any costs for specific programs.",
+  },
+  {
+    question: "What is the Employment SUCCESS Grant?",
+    answer:
+      "The Employment SUCCESS Grant is a financial assistance program administered by Career Focus Inc. to help clients overcome unexpected expenses or barriers related to their employment journey. If you are a Career Focus client and need support with employment-related costs — such as work attire, transportation, certifications, or tools — contact us to discuss available options.",
+  },
+  {
+    question: "How can employers partner with Career Focus?",
+    answer:
+      "Employers who support inclusive hiring can partner with Career Focus Inc. to access a pool of talented individuals — including youth in transition and adults with disabilities — who bring diverse perspectives and skills. Career Focus provides job readiness training, ongoing workplace support, and mentorship for placed employees. Contact us at (813) 435-8829 to schedule a partnership meeting.",
   },
 ]
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+}
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Get Started with Career Focus Employment Services",
+  description:
+    "Step-by-step guide to accessing Career Focus Inc.'s employment services in Florida.",
+  step: [
+    {
+      "@type": "HowToStep",
+      name: "Contact Career Focus",
+      text: "Call (813) 435-8829 or fill out the contact form at our website to request an initial consultation.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Initial Assessment",
+      text: "Meet with a Career Focus employment specialist for a comprehensive assessment of your skills, interests, goals, and support needs.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Service Matching",
+      text: "Based on your assessment, your specialist recommends the right services — whether that's supported employment, OJT, vocational evaluation, or career camp.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Begin Your Program",
+      text: "Start your personalized employment program with ongoing coaching, support, and advocacy from the Career Focus team.",
+    },
+  ],
+}
+
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
-  title: "Contact Us",
+  title: "Contact Us — Get Started With Career Services",
   description:
-    "Contact Career Focus Inc. to learn about our employment services. Call (813) 435-8829, email us, or visit our offices in Tampa, Wesley Chapel, or Dade City.",
+    "Contact Career Focus Inc. for employment services, career development, and job training in Florida. Call (813) 435-8829 or fill out our contact form. Offices in Tampa and Wesley Chapel.",
   openGraph: {
     title: "Contact Career Focus Inc.",
-    description: "Call (813) 435-8829, email us, or visit our offices across Central Florida.",
+    description:
+      "Get started with employment services. Call (813) 435-8829 or visit us in Tampa or Wesley Chapel.",
+    url: "/contact",
   },
 }
 
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
       {/* Hero */}
       <Hero
         compact

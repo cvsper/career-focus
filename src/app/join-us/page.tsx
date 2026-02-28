@@ -33,18 +33,90 @@ const locations = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/join-us" },
-  title: "Our Locations",
+  title: "Locations — Wesley Chapel & Tampa, Florida",
   description:
-    "Visit Career Focus Inc. at our Central Florida locations in Tampa and Wesley Chapel. Find office hours, directions, and contact information.",
+    "Visit Career Focus Inc. at our Florida locations: Tampa (HQ) and Wesley Chapel. Call (813) 435-8829 to schedule a consultation.",
   openGraph: {
-    title: "Our Locations | Career Focus Inc.",
-    description: "Two offices across Central Florida — Tampa and Wesley Chapel.",
+    title: "Our Locations — Career Focus Inc.",
+    description:
+      "Two locations across Florida: Tampa (HQ) and Wesley Chapel. Call (813) 435-8829.",
+    url: "/join-us",
+  },
+}
+
+const tampaSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://career-focus-alpha.vercel.app/#tampa",
+  name: "Career Focus Inc. — Tampa (HQ)",
+  image: "https://career-focus-alpha.vercel.app/icon.png",
+  url: "https://career-focus-alpha.vercel.app/join-us",
+  telephone: "+1-813-435-8829",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "550 N. Reo St, Suite 300",
+    addressLocality: "Tampa",
+    addressRegion: "FL",
+    postalCode: "33609",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 27.9506,
+    longitude: -82.5115,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
+  parentOrganization: {
+    "@id": "https://career-focus-alpha.vercel.app/#organization",
+  },
+}
+
+const wesleyChapelSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://career-focus-alpha.vercel.app/#wesley-chapel",
+  name: "Career Focus Inc. — Wesley Chapel",
+  image: "https://career-focus-alpha.vercel.app/icon.png",
+  url: "https://career-focus-alpha.vercel.app/join-us",
+  telephone: "+1-813-995-8473",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "6013 Wesley Grove Blvd, Suite 202",
+    addressLocality: "Wesley Chapel",
+    addressRegion: "FL",
+    postalCode: "33544",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 28.2394,
+    longitude: -82.3273,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
+  parentOrganization: {
+    "@id": "https://career-focus-alpha.vercel.app/#organization",
   },
 }
 
 export default function JoinUsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([tampaSchema, wesleyChapelSchema]),
+        }}
+      />
       {/* Hero */}
       <Hero
         compact
