@@ -47,10 +47,10 @@ export const metadata: Metadata = {
 const tampaSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://career-focus-alpha.vercel.app/#tampa",
+  "@id": "https://careerfocusinc.org/#tampa",
   name: "Career Focus Inc. — Tampa (HQ)",
-  image: "https://career-focus-alpha.vercel.app/icon.png",
-  url: "https://career-focus-alpha.vercel.app/join-us",
+  image: "https://careerfocusinc.org/icon.png",
+  url: "https://careerfocusinc.org/join-us",
   telephone: "+1-813-435-8829",
   address: {
     "@type": "PostalAddress",
@@ -72,17 +72,17 @@ const tampaSchema = {
     closes: "17:00",
   },
   parentOrganization: {
-    "@id": "https://career-focus-alpha.vercel.app/#organization",
+    "@id": "https://careerfocusinc.org/#organization",
   },
 }
 
 const wesleyChapelSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://career-focus-alpha.vercel.app/#wesley-chapel",
+  "@id": "https://careerfocusinc.org/#wesley-chapel",
   name: "Career Focus Inc. — Wesley Chapel",
-  image: "https://career-focus-alpha.vercel.app/icon.png",
-  url: "https://career-focus-alpha.vercel.app/join-us",
+  image: "https://careerfocusinc.org/icon.png",
+  url: "https://careerfocusinc.org/join-us",
   telephone: "+1-813-995-8473",
   address: {
     "@type": "PostalAddress",
@@ -104,7 +104,7 @@ const wesleyChapelSchema = {
     closes: "17:00",
   },
   parentOrganization: {
-    "@id": "https://career-focus-alpha.vercel.app/#organization",
+    "@id": "https://careerfocusinc.org/#organization",
   },
 }
 

@@ -16,7 +16,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://career-focus-alpha.vercel.app"),
+  metadataBase: new URL("https://careerfocusinc.org"),
   title: {
     default:
       "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://career-focus-alpha.vercel.app",
+    url: "https://careerfocusinc.org",
     siteName: "Career Focus Inc.",
     title:
       "Career Focus Inc. | Employment Services for Youth & Adults in Florida",
@@ -84,11 +84,11 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "NonprofitOrganization",
-  "@id": "https://career-focus-alpha.vercel.app/#organization",
+  "@id": "https://careerfocusinc.org/#organization",
   name: "Career Focus Inc.",
   alternateName: "Career Focus",
-  url: "https://career-focus-alpha.vercel.app",
-  logo: "https://career-focus-alpha.vercel.app/icon.png",
+  url: "https://careerfocusinc.org",
+  logo: "https://careerfocusinc.org/icon.png",
   description:
     "501(c)(3) nonprofit providing employment services and career development for youth in transition, adults with disabilities, veterans, and individuals re-entering the workforce across Florida.",
   foundingDate: "2013",

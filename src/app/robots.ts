@@ -16,6 +16,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Google-Extended", allow: "/" },
       { userAgent: "Bingbot", allow: "/" },
     ],
-    sitemap: "https://career-focus-alpha.vercel.app/sitemap.xml",
+    sitemap: "https://careerfocusinc.org/sitemap.xml",
   }
 }

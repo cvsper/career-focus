@@ -116,7 +116,7 @@ const youthServicesSchema = {
   "@type": "Service",
   name: "Youth Career Programs",
   provider: {
-    "@id": "https://career-focus-alpha.vercel.app/#organization",
+    "@id": "https://careerfocusinc.org/#organization",
   },
   description:
     "Career development programs for youth ages 16-24 including paid work-based learning, career camp, post-secondary planning, self-advocacy training, and job placement.",

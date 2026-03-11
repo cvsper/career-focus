@@ -112,7 +112,7 @@ const adultServicesSchema = {
   "@type": "Service",
   name: "Adult Employment Services",
   provider: {
-    "@id": "https://career-focus-alpha.vercel.app/#organization",
+    "@id": "https://careerfocusinc.org/#organization",
   },
   description:
     "Comprehensive employment services for adults with disabilities including supported employment, on-the-job training, vocational evaluations, self-employment support, and benefits counseling.",

@@ -113,8 +113,8 @@ export default function AboutPage() {
                 <p>
                   What began as a small initiative in the Tampa Bay area has
                   grown into a multi-location organization serving communities
-                  across Central Florida. With offices in Tampa, Wesley Chapel,
-                  and Dade City, we now offer 11 programs supporting youth in
+                  across Central Florida. With offices in Tampa and Wesley Chapel,
+                  we now offer 11 programs supporting youth in
                   transition, adults with disabilities, veterans, and individuals
                   re-entering the workforce.
                 </p>
