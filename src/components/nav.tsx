@@ -1,27 +1,29 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { Menu, X, ChevronDown, HelpCircle } from "lucide-react"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react"
 import { cn } from "@/lib/utils"
+import { startTour } from "@/lib/tour"
 
 type NavLink =
-  | { label: string; href: string; children?: undefined }
-  | { label: string; href?: undefined; children: { label: string; href: string; description?: string }[] }
+  | { label: string; href: string; tour?: string; children?: undefined }
+  | { label: string; href?: undefined; tour?: string; children: { label: string; href: string; description?: string }[] }
 
 const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/about", tour: "about" },
   {
     label: "Services",
+    tour: "services",
     children: [
       { label: "Adult Services", href: "/adult-services", description: "Employment programs for adults" },
       { label: "Youth Services", href: "/youth-services", description: "Career development for young people" },
     ],
   },
-  { label: "Partners", href: "/community-partners" },
-  { label: "Join Us", href: "/join-us" },
-  { label: "Contact", href: "/contact" },
+  { label: "Partners", href: "/community-partners", tour: "partners" },
+  { label: "Join Us", href: "/join-us", tour: "join" },
+  { label: "Contact", href: "/contact", tour: "contact" },
 ]
 
 export function Nav() {
@@ -34,6 +36,11 @@ export function Nav() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50)
   })
+
+  useEffect(() => {
+    const t = setTimeout(() => startTour(false), 1200)
+    return () => clearTimeout(t)
+  }, [])
 
   return (
     <motion.header
@@ -72,6 +79,7 @@ export function Nav() {
               <div key={link.label} className="relative group">
                 <button
                   onMouseEnter={() => setHovered(idx)}
+                  data-tour={link.tour ? `nav-${link.tour}` : undefined}
                   className="relative px-4 py-2 text-[15px] font-medium text-neutral-600 cursor-pointer flex items-center gap-1"
                 >
                   {hovered === idx && (
@@ -103,6 +111,7 @@ export function Nav() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={() => setHovered(idx)}
+                data-tour={link.tour ? `nav-${link.tour}` : undefined}
                 className="relative px-4 py-2 text-[15px] font-medium text-neutral-600 cursor-pointer"
               >
                 {hovered === idx && (
@@ -118,13 +127,24 @@ export function Nav() {
           )}
         </div>
 
-        {/* CTA */}
-        <a
-          href="/contact"
-          className="relative z-20 bg-brand-green-500 hover:bg-brand-green-600 text-white font-semibold text-sm rounded-full h-10 px-6 flex items-center shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
-        >
-          Get Started
-        </a>
+        {/* CTA + Help */}
+        <div className="relative z-20 flex items-center gap-2">
+          <button
+            onClick={() => startTour(true)}
+            className="p-2 rounded-full text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors duration-200 cursor-pointer"
+            aria-label="Take a tour"
+            title="Take a tour"
+          >
+            <HelpCircle className="h-5 w-5" />
+          </button>
+          <a
+            href="/contact"
+            data-tour="nav-cta"
+            className="bg-brand-green-500 hover:bg-brand-green-600 text-white font-semibold text-sm rounded-full h-10 px-6 flex items-center shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+          >
+            Get Started
+          </a>
+        </div>
       </motion.nav>
 
       {/* Mobile nav */}
